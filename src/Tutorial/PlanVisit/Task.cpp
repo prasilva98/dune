@@ -29,6 +29,7 @@
 
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
+#include <limits> 
 
 namespace Tutorial
 {
@@ -66,6 +67,8 @@ namespace Tutorial
       bool is_plan_gen = false;
       //! Distance matrix 
       std::vector<std::vector<double>> m_distances; 
+      //! Full Path 
+      std::vector<int> m_path; 
 
       //! Constructor.
       //! @param[in] name task name.
@@ -90,7 +93,7 @@ namespace Tutorial
         
       }
 
-      // Keep track of the operation mode of the vehicle
+      // Keep track of the operation mode of the vehicle.
       void 
       consume(const IMC::VehicleState* msg){
 
@@ -98,7 +101,7 @@ namespace Tutorial
 
       }
 
-      // Keep track of the position of the vehicle
+      // Keep track of the position of the vehicle.
       void 
       consume(const IMC::EstimatedState* msg){
 
@@ -106,6 +109,7 @@ namespace Tutorial
         Coordinates::toWGS84(*msg, s_lat, s_lon);
       }
 
+      // Validate coordinates based on if the number of points is even or not.
       bool validateCoor(std::vector<double>& points)
       {
         if (points.size() % 2 == 0)
@@ -144,12 +148,58 @@ namespace Tutorial
         }
       }
 
-      void printVectors(std::vector<double>& vec)
+      template <typename t>
+      void printVectors(t& vec)
       {
         for (auto& value : vec)
         {
-          spew("Value is: %f", value); 
+          if(typeid(value) == typeid(int))
+          {
+            spew("Value is: %d", value); 
+          }
+          
+          if(typeid(value) == typeid(double))
+          {
+            spew("Value is: %f", value);
+          }
         }
+      }
+
+      void addCurrentPosition(void)
+      {
+        // Add the current position as a point to visit in the beginning of the vector
+        p_visit.push_back(s_lat);
+        std::swap(p_visit.front(), p_visit.back());
+        p_visit.push_back(s_lon); 
+        std::swap(p_visit[1], p_visit.back());
+      }
+
+      void calcDistMatrix(void)
+      {
+        //! Calculate the distances between all the points and fill the distance matrix
+        for(unsigned int j = 0; j < p_visit.size();j+=2)
+        {
+          std::vector<double> dist_row;
+          for(unsigned int i = 0; i < p_visit.size();i+=2)
+          {
+            dist_row.push_back(WGS84::distance(p_visit[j], p_visit[j + 1], 0,
+                                               p_visit[i], p_visit[i + 1], 0));
+          } 
+          m_distances.push_back(dist_row); 
+         }
+      }
+
+      int CalculateTotalDistance()
+      { 
+        int totalDistance = 0;
+        // Iterate through the current path chosen and add the distances from point to point 
+        for (size_t i = 0; i < m_path.size() -1; ++i)
+        {
+          totalDistance += m_distances[m_path[i]][m_path[i + 1]];
+        }
+        // Add the distance to return to origin position.
+        totalDistance += m_distances[m_path.back()][m_path.front()];
+        return totalDistance;
       }
 
       //! Reserve entity identifiers.
@@ -192,38 +242,54 @@ namespace Tutorial
           waitForMessages(1.0);
 
           // Check if our task is Active and the path has been generated
-          // If it isnt start generating
+          // If it isnt generate a distance matrix and calculate the best route
           if( (this->isActive()) && (!is_plan_gen) && (op_mode == IMC::VehicleState::VS_SERVICE))
           {
 
             spew("Current pos (%f, %f)", s_lat, s_lon);
-
-            // Add the current position as a point to visit in the beginning of the vector
-            p_visit.push_back(s_lat);
-            std::swap(p_visit.front(), p_visit.back());
-            p_visit.push_back(s_lon); 
-            std::swap(p_visit[1], p_visit.back());
-
-            //! I need to calculate the distances between all the points
-            for(unsigned int j = 0; j < p_visit.size();j+=2)
+            
+            //! Add current position to the beginning of the list of points to visit
+            addCurrentPosition();
+            calcDistMatrix();            
+            
+            // Fill the path variable based on the number of points 
+            for (unsigned int i = 0; i < m_distances.size(); i++)
             {
-              std::vector<double> dist_row;
-              for(unsigned int i = 0; i < p_visit.size();i+=2)
-              {
-                dist_row.push_back(WGS84::distance(p_visit[j], p_visit[j + 1], 0,
-                                            p_visit[i], p_visit[i + 1], 0));
-              } 
-              inf("New distance row: ");
-              printVectors(dist_row);
-              m_distances.push_back(dist_row); 
-
+              m_path.push_back(i);
             }
-            is_plan_gen = true; 
+
+            // First minDistance is the biggest distance that fits inside a double.
+            double minDistance = std::numeric_limits<double>::max();
+
+            // Save the best path on this variable. 
+            std::vector<int> bestPath; 
+            do
+            {
+              int currentDistance = CalculateTotalDistance();
+              if (currentDistance < minDistance) 
+              {
+                minDistance = currentDistance;
+                bestPath = m_path; 
+              }
+
+            }while(std::next_permutation(m_path.begin() + 1, m_path.end()));
+
+            std::cout << "Best path with a distance of " << minDistance << " is: " << std::endl;  
+
+            for(const auto& value: bestPath)
+            {
+              std::cout << value << " "; 
+            }
+
+            std::cout << std::endl; 
+
+            is_plan_gen = true;
+
           }
-        }
+        }    
       }
     };
-   }
+  }
 }
 
 DUNE_TASK
