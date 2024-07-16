@@ -55,7 +55,7 @@ namespace DUNE
 
       if (size < n)
         throw BufferTooShort();
-
+      
       ptr += serializeHeader(msg, bfr, size);
       msg->serializeFields(ptr);
 
@@ -231,7 +231,7 @@ namespace DUNE
         Utils::ByteCopy::rcopy(rcrc, bfr + DUNE_IMC_CONST_HEADER_SIZE + hdr.size);
       else
         Utils::ByteCopy::copy(rcrc, bfr + DUNE_IMC_CONST_HEADER_SIZE + hdr.size);
-
+      
       // Validate CRC.
       uint16_t crc = Algorithms::CRC16::compute(bfr, DUNE_IMC_CONST_HEADER_SIZE + hdr.size);
 
@@ -242,6 +242,7 @@ namespace DUNE
       if (msg == NULL)
       {
         msg = Factory::produce(hdr.mgid);
+
         if (msg == 0)
           throw InvalidMessageId(hdr.mgid);
       }

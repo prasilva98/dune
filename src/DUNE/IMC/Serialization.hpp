@@ -123,7 +123,7 @@ namespace DUNE
 
       if (length < size)
         throw BufferTooShort();
-
+      
       std::memcpy(&t, bfr, size);
       length -= size;
 

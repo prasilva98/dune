@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 0f425402b735f36a64d579da7bb4baf3                            *
+// IMC XML MD5: 4f597412977cdf88943cdd06e8c1ed42                            *
 //***************************************************************************
 
 #ifndef DUNE_IMC_DEFINITIONS_HPP_INCLUDED_
@@ -134,12 +134,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 2;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(description);
       }
 
       void
@@ -262,12 +256,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 5;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(label) + IMC::getSerializationSize(component);
       }
 
       uint16_t
@@ -415,12 +403,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(list);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -549,12 +531,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 2;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(consumer);
       }
 
       void
@@ -783,12 +759,6 @@ namespace DUNE
         return 3;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(step);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -871,12 +841,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(error);
       }
 
       void
@@ -1099,12 +1063,6 @@ namespace DUNE
         return 0;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return msgs.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -1288,12 +1246,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(entities);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -1368,12 +1320,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 3;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(data);
       }
 
       void
@@ -1601,12 +1547,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(snapshot) + message.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -1703,12 +1643,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -1791,12 +1725,6 @@ namespace DUNE
         return 9;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(context) + IMC::getSerializationSize(text);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -1873,12 +1801,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 9;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return msg.getSerializationSize();
       }
 
       void
@@ -1971,12 +1893,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(file);
       }
 
       void
@@ -2279,12 +2195,6 @@ namespace DUNE
         return 19;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(sonar_data);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -2355,12 +2265,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(text);
       }
 
       void
@@ -2514,12 +2418,6 @@ namespace DUNE
         return 18;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return samples.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -2662,12 +2560,6 @@ namespace DUNE
         return 23;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(sys_name) + IMC::getSerializationSize(services);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -2738,12 +2630,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(service);
       }
 
       void
@@ -3012,12 +2898,6 @@ namespace DUNE
         return 2;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(number) + IMC::getSerializationSize(contents);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -3085,12 +2965,6 @@ namespace DUNE
         return 6;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(destination) + IMC::getSerializationSize(data);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -3152,12 +3026,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(source) + IMC::getSerializationSize(data);
       }
 
       void
@@ -3244,12 +3112,6 @@ namespace DUNE
         return 5;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(error);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -3311,12 +3173,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(origin) + IMC::getSerializationSize(text);
       }
 
       void
@@ -3388,12 +3244,6 @@ namespace DUNE
         return 24;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(origin) + IMC::getSerializationSize(data);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -3459,12 +3309,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 4;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(destination) + IMC::getSerializationSize(data);
       }
 
       void
@@ -3549,12 +3393,6 @@ namespace DUNE
         return 3;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(text);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -3616,12 +3454,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 4;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(group_name);
       }
 
       void
@@ -3704,12 +3536,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(groupname) + IMC::getSerializationSize(grouplist);
       }
 
       void
@@ -3917,12 +3743,6 @@ namespace DUNE
         return 12;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return data.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -4006,12 +3826,6 @@ namespace DUNE
         return 12;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(data);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -4083,12 +3897,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 11;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return sample.getSerializationSize();
       }
 
       void
@@ -4185,12 +3993,6 @@ namespace DUNE
         return 5;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return data.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -4272,12 +4074,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 12;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return cmd.getSerializationSize();
       }
 
       void
@@ -4396,12 +4192,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 5;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(list);
       }
 
       void
@@ -4535,12 +4325,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 10;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(destination) + IMC::getSerializationSize(source) + IMC::getSerializationSize(data);
       }
 
       void
@@ -4685,12 +4469,6 @@ namespace DUNE
         return 23;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(beacon);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -4763,12 +4541,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return beacons.getSerializationSize();
       }
 
       void
@@ -4846,12 +4618,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return message.getSerializationSize();
       }
 
       void
@@ -4962,12 +4728,6 @@ namespace DUNE
         return 31;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(sentence) + IMC::getSerializationSize(modem_type) + IMC::getSerializationSize(sys_src) + IMC::getSerializationSize(sys_dst) + IMC::getSerializationSize(data);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -5076,12 +4836,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 5;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(system) + msg.getSerializationSize();
       }
 
       void
@@ -5214,12 +4968,6 @@ namespace DUNE
         return 0;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(list);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -5283,12 +5031,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 6;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(peer);
       }
 
       void
@@ -5375,12 +5117,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 15;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(destination) + msg.getSerializationSize();
       }
 
       void
@@ -5506,10 +5242,76 @@ namespace DUNE
         return 8;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+    };
+
+    //! Acoustic Release Request.
+    class AcousticRelease: public Message
+    {
+    public:
+      //! Operation.
+      enum OperationEnum
       {
-        return IMC::getSerializationSize(info);
+        //! Open.
+        AROP_OPEN = 0,
+        //! Close.
+        AROP_CLOSE = 1
+      };
+
+      //! System.
+      std::string system;
+      //! Operation.
+      uint8_t op;
+
+      static uint16_t
+      getIdStatic(void)
+      {
+        return 217;
+      }
+
+      AcousticRelease(void);
+
+      AcousticRelease*
+      clone(void) const
+      {
+        return new AcousticRelease(*this);
+      }
+
+      void
+      clear(void);
+
+      bool
+      fieldsEqual(const Message& msg__) const;
+
+      int
+      validate(void) const;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      getId(void) const
+      {
+        return AcousticRelease::getIdStatic();
+      }
+
+      const char*
+      getName(void) const
+      {
+        return "AcousticRelease";
+      }
+
+      unsigned
+      getFixedSerializationSize(void) const
+      {
+        return 1;
       }
 
       void
@@ -6614,12 +6416,6 @@ namespace DUNE
         return 5;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return location.getSerializationSize() + beam_config.getSerializationSize();
-      }
-
       fp64_t
       getValueFP(void) const;
 
@@ -7371,12 +7167,6 @@ namespace DUNE
         return 0;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(value);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -7436,12 +7226,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(value);
       }
 
       void
@@ -7595,12 +7379,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 14;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return beam_config.getSerializationSize() + IMC::getSerializationSize(data);
       }
 
       void
@@ -7805,12 +7583,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 8;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(opmodes);
       }
 
       fp64_t
@@ -8877,12 +8649,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return state.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -9609,12 +9375,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(actions);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -9674,12 +9434,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(actions);
       }
 
       void
@@ -9827,12 +9581,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(text);
       }
 
       void
@@ -10005,12 +9753,6 @@ namespace DUNE
         return 9;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -10136,12 +9878,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -10203,12 +9939,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name);
       }
 
       fp64_t
@@ -10278,12 +10008,6 @@ namespace DUNE
         return 0;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -10345,12 +10069,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name);
       }
 
       fp64_t
@@ -11192,12 +10910,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 20;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return beacon.getSerializationSize();
       }
 
       void
@@ -12680,6 +12392,8 @@ namespace DUNE
     class Goto: public Maneuver
     {
     public:
+      //! Optional Identifier.
+      uint16_t opt_id;
       //! Timeout.
       uint16_t timeout;
       //! Latitude WGS-84.
@@ -12726,6 +12440,29 @@ namespace DUNE
       int
       validate(void) const;
 
+      bool
+      checkOptBit(uint16_t bitPosition) const
+      {
+        return opt_id & (1 << bitPosition);
+      }
+
+      void
+      setOptBit(uint16_t bitPosition)
+      {
+        opt_id |= (1 << bitPosition);
+      }
+
+      void
+      updateOptVar(void)
+      {
+        if (lon != 0) setOptBit(3);
+        if (z != 0) setOptBit(4);
+        if (z_units != 0) setOptBit(5);
+        if (roll != 0) setOptBit(8);
+        if (pitch != 0) setOptBit(9);
+        if (yaw != 0) setOptBit(10);
+      }
+
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -12750,13 +12487,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 52;
+        return 17;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return IMC::getSerializationSize(custom);
+        return checkOptBit(3)*8 + checkOptBit(4)*4 + checkOptBit(5)*1 + checkOptBit(8)*8 + checkOptBit(9)*8 + checkOptBit(10)*8 + IMC::getSerializationSize(custom);
       }
 
       void
@@ -12851,12 +12588,6 @@ namespace DUNE
         return 35;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -12916,12 +12647,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
       }
 
       void
@@ -13039,12 +12764,6 @@ namespace DUNE
         return 48;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -13106,12 +12825,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 2;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
       }
 
       void
@@ -13177,12 +12890,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 2;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return control.getSerializationSize() + IMC::getSerializationSize(custom);
       }
 
       void
@@ -13299,12 +13006,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 59;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
       }
 
       void
@@ -13449,12 +13150,6 @@ namespace DUNE
         return 28;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return points.getSerializationSize() + IMC::getSerializationSize(custom);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -13548,12 +13243,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 36;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
       }
 
       void
@@ -13686,12 +13375,6 @@ namespace DUNE
         return 32;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -13780,12 +13463,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 38;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
       }
 
       void
@@ -13932,12 +13609,6 @@ namespace DUNE
         return 28;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return points.getSerializationSize() + IMC::getSerializationSize(custom);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -14017,12 +13688,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 2;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name) + IMC::getSerializationSize(custom);
       }
 
       void
@@ -14169,12 +13834,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 34;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return points.getSerializationSize() + participants.getSerializationSize() + IMC::getSerializationSize(custom);
       }
 
       void
@@ -14383,12 +14042,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 3;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(info);
       }
 
       void
@@ -14679,12 +14332,6 @@ namespace DUNE
         return 26;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return polygon.getSerializationSize() + IMC::getSerializationSize(custom);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -14799,12 +14446,6 @@ namespace DUNE
         return 43;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -14881,12 +14522,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(formation_name) + participants.getSerializationSize() + IMC::getSerializationSize(custom);
       }
 
       void
@@ -14990,12 +14625,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 30;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(group_name) + IMC::getSerializationSize(formation_name) + IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(description) + IMC::getSerializationSize(custom);
       }
 
       void
@@ -15157,12 +14786,6 @@ namespace DUNE
         return 21;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return speed.getSerializationSize() + z.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -15278,12 +14901,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 5;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return reference.getSerializationSize();
       }
 
       void
@@ -15405,12 +15022,6 @@ namespace DUNE
         return 84;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(s_id);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -15508,12 +15119,6 @@ namespace DUNE
         return 72;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return rel_state.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -15606,12 +15211,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 7;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
       }
 
       void
@@ -15750,12 +15349,6 @@ namespace DUNE
         return 45;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(formation_name) + IMC::getSerializationSize(group_name) + IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(description) + participants.getSerializationSize() + IMC::getSerializationSize(custom);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -15847,12 +15440,6 @@ namespace DUNE
         return 28;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -15926,12 +15513,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 28;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
       }
 
       void
@@ -16120,12 +15701,6 @@ namespace DUNE
         return 59;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -16205,12 +15780,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 31;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
       }
 
       void
@@ -16341,12 +15910,6 @@ namespace DUNE
         return 30;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -16426,12 +15989,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 43;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
       }
 
       void
@@ -16528,12 +16085,6 @@ namespace DUNE
         return 46;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return area_limits.getSerializationSize() + IMC::getSerializationSize(controller) + IMC::getSerializationSize(custom);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -16625,12 +16176,6 @@ namespace DUNE
         return 26;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(target) + IMC::getSerializationSize(custom);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -16700,12 +16245,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 23;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
       }
 
       void
@@ -16796,12 +16335,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 37;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
       }
 
       void
@@ -16947,12 +16480,6 @@ namespace DUNE
         return 41;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(custom);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -17056,12 +16583,6 @@ namespace DUNE
         return 27;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(error_ents) + IMC::getSerializationSize(last_error);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -17159,12 +16680,6 @@ namespace DUNE
         return 6;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return maneuver.getSerializationSize() + IMC::getSerializationSize(info);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -17259,12 +16774,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(entities);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -17338,12 +16847,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 11;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(mnames) + IMC::getSerializationSize(enames) + IMC::getSerializationSize(cnames) + IMC::getSerializationSize(last_error);
       }
 
       void
@@ -17949,12 +17452,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(mode);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -18176,12 +17673,6 @@ namespace DUNE
         return 4;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(sys_dst);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -18372,12 +17863,6 @@ namespace DUNE
         return 16;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(destination) + msg_data.getSerializationSize() + IMC::getSerializationSize(txt_data) + IMC::getSerializationSize(raw_data);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -18482,12 +17967,6 @@ namespace DUNE
         return 7;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(info);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -18553,12 +18032,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 10;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(destination) + IMC::getSerializationSize(sms_text);
       }
 
       void
@@ -18637,12 +18110,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 3;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(info);
       }
 
       void
@@ -18858,12 +18325,6 @@ namespace DUNE
         return 10;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(destination) + msg_data.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -18962,14 +18423,116 @@ namespace DUNE
         return 3;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+    };
+
+    //! Asset Report .
+    class AssetReport: public Message
+    {
+    public:
+      //! Medium.
+      enum MediumEnum
       {
-        return IMC::getSerializationSize(info);
+        //! WiFi.
+        RM_WIFI = 1,
+        //! Satellite.
+        RM_SATELLITE = 2,
+        //! Acoustic.
+        RM_ACOUSTIC = 3,
+        //! SMS.
+        RM_SMS = 4
+      };
+
+      //! Asset Name.
+      std::string name;
+      //! Report Timestamp.
+      fp64_t report_time;
+      //! Medium.
+      uint8_t medium;
+      //! Latitude.
+      fp64_t lat;
+      //! Longitude.
+      fp64_t lon;
+      //! Depth.
+      fp32_t depth;
+      //! Altitude.
+      fp32_t alt;
+      //! Speed Over Ground.
+      fp32_t sog;
+      //! Course Over Ground.
+      fp32_t cog;
+      //! Additional Info.
+      MessageList<Message> msgs;
+
+      static uint16_t
+      getIdStatic(void)
+      {
+        return 525;
+      }
+
+      AssetReport(void);
+
+      AssetReport*
+      clone(void) const
+      {
+        return new AssetReport(*this);
+      }
+
+      void
+      clear(void);
+
+      bool
+      fieldsEqual(const Message& msg__) const;
+
+      int
+      validate(void) const;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      getId(void) const
+      {
+        return AssetReport::getIdStatic();
+      }
+
+      const char*
+      getName(void) const
+      {
+        return "AssetReport";
+      }
+
+      unsigned
+      getFixedSerializationSize(void) const
+      {
+        return 41;
       }
 
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+
+    protected:
+      void
+      setTimeStampNested(double value__);
+
+      void
+      setSourceNested(uint16_t value__);
+
+      void
+      setSourceEntityNested(uint8_t value__);
+
+      void
+      setDestinationNested(uint16_t value__);
+
+      void
+      setDestinationEntityNested(uint8_t value__);
     };
 
     //! Abort.
@@ -19112,12 +18675,6 @@ namespace DUNE
         return 2;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name) + IMC::getSerializationSize(value);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -19183,12 +18740,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(maneuver_id) + data.getSerializationSize() + start_actions.getSerializationSize() + end_actions.getSerializationSize();
       }
 
       void
@@ -19272,12 +18823,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(source_man) + IMC::getSerializationSize(dest_man) + IMC::getSerializationSize(conditions) + actions.getSerializationSize();
       }
 
       void
@@ -19371,12 +18916,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(description) + IMC::getSerializationSize(vnamespace) + variables.getSerializationSize() + IMC::getSerializationSize(start_man_id) + maneuvers.getSerializationSize() + transitions.getSerializationSize() + start_actions.getSerializationSize() + end_actions.getSerializationSize();
       }
 
       void
@@ -19475,12 +19014,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return plan.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -19577,12 +19110,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 2;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(plan_id);
       }
 
       void
@@ -19690,12 +19217,6 @@ namespace DUNE
         return 4;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(plan_id) + arg.getSerializationSize() + IMC::getSerializationSize(info);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -19783,12 +19304,6 @@ namespace DUNE
         return 12;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(change_sname) + IMC::getSerializationSize(md5);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -19860,12 +19375,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 16;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(change_sname) + IMC::getSerializationSize(md5) + plans_info.getSerializationSize();
       }
 
       void
@@ -19992,12 +19501,6 @@ namespace DUNE
         return 6;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(plan_id) + arg.getSerializationSize() + IMC::getSerializationSize(info);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -20113,12 +19616,6 @@ namespace DUNE
         return 16;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(man_id);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -20204,12 +19701,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 2;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(params);
       }
 
       void
@@ -20322,12 +19813,6 @@ namespace DUNE
         return 81;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(group_name);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -20427,12 +19912,6 @@ namespace DUNE
         return 2;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(durations) + IMC::getSerializationSize(distances) + IMC::getSerializationSize(actions) + IMC::getSerializationSize(fuel);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -20525,12 +20004,6 @@ namespace DUNE
         return 57;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(sid);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -20602,12 +20075,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 24;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(id) + IMC::getSerializationSize(sensor_class) + IMC::getSerializationSize(data);
       }
 
       void
@@ -20765,12 +20232,6 @@ namespace DUNE
         return 4;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(id) + feature.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -20848,12 +20309,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(id) + features.getSerializationSize();
       }
 
       void
@@ -20960,12 +20415,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(id) + arg.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -21043,12 +20492,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(localname) + links.getSerializationSize();
       }
 
       void
@@ -21130,12 +20573,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(timeline) + IMC::getSerializationSize(predicate) + IMC::getSerializationSize(attributes);
       }
 
       void
@@ -21220,12 +20657,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(goal_id) + IMC::getSerializationSize(goal_xml);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -21308,12 +20739,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name) + IMC::getSerializationSize(min) + IMC::getSerializationSize(max);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -21377,12 +20802,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(timeline) + IMC::getSerializationSize(predicate) + attributes.getSerializationSize();
       }
 
       void
@@ -21481,12 +20900,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(goal_id) + token.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -21564,12 +20977,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(reactor) + tokens.getSerializationSize();
       }
 
       void
@@ -21651,12 +21058,6 @@ namespace DUNE
         return 0;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(topic) + IMC::getSerializationSize(data);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -21718,12 +21119,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(data);
       }
 
       void
@@ -21935,12 +21330,6 @@ namespace DUNE
         return 29;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(label);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -22004,12 +21393,6 @@ namespace DUNE
         return 0;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name) + IMC::getSerializationSize(value);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -22071,12 +21454,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name) + params.getSerializationSize();
       }
 
       void
@@ -22160,12 +21537,6 @@ namespace DUNE
         return 0;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name) + IMC::getSerializationSize(visibility) + IMC::getSerializationSize(scope);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -22227,12 +21598,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name) + params.getSerializationSize();
       }
 
       void
@@ -22310,12 +21675,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name);
       }
 
       void
@@ -22501,12 +21860,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 4;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(messages);
       }
 
       void
@@ -22703,12 +22056,6 @@ namespace DUNE
         return 0;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -22768,12 +22115,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name);
       }
 
       void
@@ -22846,12 +22187,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(error);
       }
 
       void
@@ -22932,12 +22267,6 @@ namespace DUNE
         return 3;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(sys_dst) + IMC::getSerializationSize(data);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -23012,12 +22341,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(sys_src) + IMC::getSerializationSize(sys_dst) + IMC::getSerializationSize(data);
       }
 
       void
@@ -23110,12 +22433,6 @@ namespace DUNE
         return 3;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(error);
-      }
-
       fp64_t
       getValueFP(void) const;
 
@@ -23187,12 +22504,6 @@ namespace DUNE
         return 6;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(sys);
-      }
-
       fp64_t
       getValueFP(void) const;
 
@@ -23262,12 +22573,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 6;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(sys_dst);
       }
 
       void
@@ -23608,12 +22913,6 @@ namespace DUNE
         return 22;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return controlparams.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -23760,12 +23059,6 @@ namespace DUNE
         return 2;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return waypoints.getSerializationSize();
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
 
@@ -23877,12 +23170,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 2;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(settings) + plan.getSerializationSize() + IMC::getSerializationSize(info);
       }
 
       void
@@ -24046,12 +23333,6 @@ namespace DUNE
         return 3;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(data);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -24113,12 +23394,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(content_type) + IMC::getSerializationSize(content);
       }
 
       void
@@ -24436,12 +23711,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 0;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(locale) + IMC::getSerializationSize(config);
       }
 
       void
@@ -24775,12 +24044,6 @@ namespace DUNE
         return 32;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(target);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -24862,12 +24125,6 @@ namespace DUNE
         return 40;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(target);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -24939,12 +24196,6 @@ namespace DUNE
         return 25;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(target);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -25012,12 +24263,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 21;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(name);
       }
 
       void
@@ -25092,12 +24337,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return modems.getSerializationSize();
       }
 
       void
@@ -25436,12 +24675,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return IMC::getSerializationSize(text);
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -25699,6 +24932,577 @@ namespace DUNE
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
 
+    //! ADCP Beam Measurements.
+    class ADCPBeam: public Message
+    {
+    public:
+      //! Water Velocity.
+      fp32_t vel;
+      //! Amplitude.
+      fp32_t amp;
+      //! Correlation.
+      uint8_t cor;
+
+      static uint16_t
+      getIdStatic(void)
+      {
+        return 1016;
+      }
+
+      ADCPBeam(void);
+
+      ADCPBeam*
+      clone(void) const
+      {
+        return new ADCPBeam(*this);
+      }
+
+      void
+      clear(void);
+
+      bool
+      fieldsEqual(const Message& msg__) const;
+
+      int
+      validate(void) const;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      getId(void) const
+      {
+        return ADCPBeam::getIdStatic();
+      }
+
+      const char*
+      getName(void) const
+      {
+        return "ADCPBeam";
+      }
+
+      unsigned
+      getFixedSerializationSize(void) const
+      {
+        return 9;
+      }
+
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+    };
+
+    //! Current Profile Cell.
+    class CurrentProfileCell: public Message
+    {
+    public:
+      //! Cell Position.
+      fp32_t cell_position;
+      //! Beams Measurements.
+      MessageList<ADCPBeam> beams;
+
+      static uint16_t
+      getIdStatic(void)
+      {
+        return 1015;
+      }
+
+      CurrentProfileCell(void);
+
+      CurrentProfileCell*
+      clone(void) const
+      {
+        return new CurrentProfileCell(*this);
+      }
+
+      void
+      clear(void);
+
+      bool
+      fieldsEqual(const Message& msg__) const;
+
+      int
+      validate(void) const;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      getId(void) const
+      {
+        return CurrentProfileCell::getIdStatic();
+      }
+
+      const char*
+      getName(void) const
+      {
+        return "CurrentProfileCell";
+      }
+
+      unsigned
+      getFixedSerializationSize(void) const
+      {
+        return 4;
+      }
+
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+
+    protected:
+      void
+      setTimeStampNested(double value__);
+
+      void
+      setSourceNested(uint16_t value__);
+
+      void
+      setSourceEntityNested(uint8_t value__);
+
+      void
+      setDestinationNested(uint16_t value__);
+
+      void
+      setDestinationEntityNested(uint8_t value__);
+    };
+
+    //! Current Profile.
+    class CurrentProfile: public Message
+    {
+    public:
+      //! Coordinate System.
+      enum CoordinateSystemBits
+      {
+        //! xyz.
+        UTF_XYZ = 0x01,
+        //! ned.
+        UTF_NED = 0x02,
+        //! beams.
+        UTF_BEAMS = 0x04
+      };
+
+      //! Number of Beams.
+      uint8_t nbeams;
+      //! Number of Cells.
+      uint8_t ncells;
+      //! Coordinate System.
+      uint8_t coord_sys;
+      //! Profile.
+      MessageList<CurrentProfileCell> profile;
+
+      static uint16_t
+      getIdStatic(void)
+      {
+        return 1014;
+      }
+
+      CurrentProfile(void);
+
+      CurrentProfile*
+      clone(void) const
+      {
+        return new CurrentProfile(*this);
+      }
+
+      void
+      clear(void);
+
+      bool
+      fieldsEqual(const Message& msg__) const;
+
+      int
+      validate(void) const;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      getId(void) const
+      {
+        return CurrentProfile::getIdStatic();
+      }
+
+      const char*
+      getName(void) const
+      {
+        return "CurrentProfile";
+      }
+
+      unsigned
+      getFixedSerializationSize(void) const
+      {
+        return 3;
+      }
+
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+
+    protected:
+      void
+      setTimeStampNested(double value__);
+
+      void
+      setSourceNested(uint16_t value__);
+
+      void
+      setSourceEntityNested(uint8_t value__);
+
+      void
+      setDestinationNested(uint16_t value__);
+
+      void
+      setDestinationEntityNested(uint8_t value__);
+    };
+
+    //! GPIO State.
+    class GpioState: public Message
+    {
+    public:
+      //! Name.
+      std::string name;
+      //! Value.
+      uint8_t value;
+
+      static uint16_t
+      getIdStatic(void)
+      {
+        return 2000;
+      }
+
+      GpioState(void);
+
+      GpioState*
+      clone(void) const
+      {
+        return new GpioState(*this);
+      }
+
+      void
+      clear(void);
+
+      bool
+      fieldsEqual(const Message& msg__) const;
+
+      int
+      validate(void) const;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      getId(void) const
+      {
+        return GpioState::getIdStatic();
+      }
+
+      const char*
+      getName(void) const
+      {
+        return "GpioState";
+      }
+
+      unsigned
+      getFixedSerializationSize(void) const
+      {
+        return 1;
+      }
+
+      fp64_t
+      getValueFP(void) const;
+
+      void
+      setValueFP(fp64_t val);
+
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+    };
+
+    //! Get GPIO State.
+    class GpioStateGet: public Message
+    {
+    public:
+      //! Name.
+      std::string name;
+
+      static uint16_t
+      getIdStatic(void)
+      {
+        return 2001;
+      }
+
+      GpioStateGet(void);
+
+      GpioStateGet*
+      clone(void) const
+      {
+        return new GpioStateGet(*this);
+      }
+
+      void
+      clear(void);
+
+      bool
+      fieldsEqual(const Message& msg__) const;
+
+      int
+      validate(void) const;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      getId(void) const
+      {
+        return GpioStateGet::getIdStatic();
+      }
+
+      const char*
+      getName(void) const
+      {
+        return "GpioStateGet";
+      }
+
+      unsigned
+      getFixedSerializationSize(void) const
+      {
+        return 0;
+      }
+
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+    };
+
+    //! Set GPIO State.
+    class GpioStateSet: public Message
+    {
+    public:
+      //! Name.
+      std::string name;
+      //! Value.
+      uint8_t value;
+
+      static uint16_t
+      getIdStatic(void)
+      {
+        return 2002;
+      }
+
+      GpioStateSet(void);
+
+      GpioStateSet*
+      clone(void) const
+      {
+        return new GpioStateSet(*this);
+      }
+
+      void
+      clear(void);
+
+      bool
+      fieldsEqual(const Message& msg__) const;
+
+      int
+      validate(void) const;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      getId(void) const
+      {
+        return GpioStateSet::getIdStatic();
+      }
+
+      const char*
+      getName(void) const
+      {
+        return "GpioStateSet";
+      }
+
+      unsigned
+      getFixedSerializationSize(void) const
+      {
+        return 1;
+      }
+
+      fp64_t
+      getValueFP(void) const;
+
+      void
+      setValueFP(fp64_t val);
+
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+    };
+
+    //! Colored Dissolved Organic Matter.
+    class ColoredDissolvedOrganicMatter: public Message
+    {
+    public:
+      //! Value.
+      fp32_t value;
+
+      static uint16_t
+      getIdStatic(void)
+      {
+        return 2003;
+      }
+
+      ColoredDissolvedOrganicMatter(void);
+
+      ColoredDissolvedOrganicMatter*
+      clone(void) const
+      {
+        return new ColoredDissolvedOrganicMatter(*this);
+      }
+
+      void
+      clear(void);
+
+      bool
+      fieldsEqual(const Message& msg__) const;
+
+      int
+      validate(void) const;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      getId(void) const
+      {
+        return ColoredDissolvedOrganicMatter::getIdStatic();
+      }
+
+      const char*
+      getName(void) const
+      {
+        return "ColoredDissolvedOrganicMatter";
+      }
+
+      unsigned
+      getFixedSerializationSize(void) const
+      {
+        return 4;
+      }
+
+      fp64_t
+      getValueFP(void) const;
+
+      void
+      setValueFP(fp64_t val);
+
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+    };
+
+    //! Fluorescent Dissolved Organic Matter.
+    class FluorescentDissolvedOrganicMatter: public Message
+    {
+    public:
+      //! Value.
+      fp32_t value;
+
+      static uint16_t
+      getIdStatic(void)
+      {
+        return 2004;
+      }
+
+      FluorescentDissolvedOrganicMatter(void);
+
+      FluorescentDissolvedOrganicMatter*
+      clone(void) const
+      {
+        return new FluorescentDissolvedOrganicMatter(*this);
+      }
+
+      void
+      clear(void);
+
+      bool
+      fieldsEqual(const Message& msg__) const;
+
+      int
+      validate(void) const;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      getId(void) const
+      {
+        return FluorescentDissolvedOrganicMatter::getIdStatic();
+      }
+
+      const char*
+      getName(void) const
+      {
+        return "FluorescentDissolvedOrganicMatter";
+      }
+
+      unsigned
+      getFixedSerializationSize(void) const
+      {
+        return 4;
+      }
+
+      fp64_t
+      getValueFP(void) const;
+
+      void
+      setValueFP(fp64_t val);
+
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+    };
+
     //! Total Magnetic Field Intensity.
     class TotalMagIntensity: public Message
     {
@@ -25761,6 +25565,82 @@ namespace DUNE
 
       void
       setValueFP(fp64_t val);
+
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+    };
+
+    //! Communication Restriction.
+    class CommRestriction: public Message
+    {
+    public:
+      //! Restricted Communication Means.
+      enum RestrictedCommunicationMeansBits
+      {
+        //! Satellite.
+        MEAN_SATELLITE = 0x01,
+        //! Acoustic.
+        MEAN_ACOUSTIC = 0x02,
+        //! WiFi.
+        MEAN_WIFI = 0x04,
+        //! GSM.
+        MEAN_GSM = 0x08
+      };
+
+      //! Restricted Communication Means.
+      uint8_t restriction;
+      //! Reason.
+      std::string reason;
+
+      static uint16_t
+      getIdStatic(void)
+      {
+        return 2010;
+      }
+
+      CommRestriction(void);
+
+      CommRestriction*
+      clone(void) const
+      {
+        return new CommRestriction(*this);
+      }
+
+      void
+      clear(void);
+
+      bool
+      fieldsEqual(const Message& msg__) const;
+
+      int
+      validate(void) const;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      getId(void) const
+      {
+        return CommRestriction::getIdStatic();
+      }
+
+      const char*
+      getName(void) const
+      {
+        return "CommRestriction";
+      }
+
+      unsigned
+      getFixedSerializationSize(void) const
+      {
+        return 1;
+      }
 
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
