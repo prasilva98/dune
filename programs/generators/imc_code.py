@@ -35,6 +35,9 @@ from imc.deps import *
 
 CONST_NULL_ID = 65535
 
+def is_bigger_than_any(number, num_list):
+    return any(num > number for num in num_list)
+
 def get_cxx_type(field_node):
     type = field_node.get('type')
     msg_type = field_node.get('message-type', 'Message')
@@ -145,11 +148,11 @@ class Message:
         if self.has_fields and node.get('optional'):
             optVar = []
              # checkOptbit
-            f = Function('checkOptBit', 'bool', [Var('bitPosition', 'uint16_t')], const = True, inline = True)
+            f = Function('checkOptBit', 'bool', [Var('bitPosition', 'uint32_t')], const = True, inline = True)
             f.body('return opt_id & (1 << bitPosition);')
             public.append(f)
             # setOptBit 
-            f = Function('setOptBit', 'void', [Var('bitPosition', 'uint16_t')], const = False, inline = True)
+            f = Function('setOptBit', 'void', [Var('bitPosition', 'uint32_t')], const = False, inline = True)
             f.body('opt_id |= (1 << bitPosition);')
             public.append(f)
             # UpdateOptVar
@@ -169,6 +172,8 @@ class Message:
         if self.has_fields():
             f.add_body('uint8_t* ptr__ = bfr__;')
             if (node.get('optional')):
+                # If add the optional identifier exists then serialize the optional id variable 
+                f.add_body('ptr__ += IMC::serialize(opt_id, ptr__);')
                 optionals = node.get('optional')
                 optVar = [int(value.strip()) for value in optionals.split(',')]
                 for index, field in enumerate(node.findall('field')):
@@ -178,7 +183,8 @@ class Message:
                         f.add_body('if (checkOptBit({})) ptr__ += IMC::serialize({}, ptr__);'
                                                             .format(index, get_name(field)) )
                     else:
-                        f.add_body('ptr__ += IMC::serialize(%s, ptr__);' % get_name(field))              
+                        f.add_body('ptr__ += IMC::serialize(%s, ptr__);' % get_name(field))
+
             else: 
                 for field in node.findall('field'):
                     if field.get('type').startswith('message'):
@@ -193,10 +199,12 @@ class Message:
         # deserializeFields()
         f = Function('deserializeFields', 'uint16_t', [Var('bfr__', 'const uint8_t*'), Var('size__', 'uint16_t')])
         if self.has_fields():
+            f.add_body('const uint8_t* start__ = bfr__;')
             if( node.get('optional')):
+                # Optional identifier exists add deserialize option for optional ID. 
                 optionals = node.get('optional')
                 optVar = [int(value.strip()) for value in optionals.split(',')]
-                f.add_body('const uint8_t* start__ = bfr__;')
+                f.add_body('bfr__ += IMC::deserialize(opt_id, bfr__, size__);')
                 for index,field in enumerate(node.findall('field')):
                     if field.get('type').startswith('message'):
                         f.add_body('bfr__ += %s.deserialize(bfr__, size__);' % get_name(field))
@@ -207,7 +215,6 @@ class Message:
                         f.add_body('bfr__ += IMC::deserialize(%s, bfr__, size__);' % get_name(field))
                 f.add_body('return bfr__ - start__;')
             else: 
-                f.add_body('const uint8_t* start__ = bfr__;')
                 for field in node.findall('field'):
                     if field.get('type').startswith('message'):
                         f.add_body('bfr__ += %s.deserialize(bfr__, size__);' % get_name(field))
@@ -336,11 +343,25 @@ class Message:
                 enum.add_field(EnumField(name, field.get('id'), field.get('name')))
             hpp.append(enum)
 
+        # Check if optional identifier exists and create OptId
+        # based on optional check the size this variable needs to have
+        if( node.get('optional')):
+            optionals = node.get('optional')
+            optVar = [int(value.strip()) for value in optionals.split(',')]
+            if is_bigger_than_any(15,optVar):
+                v = Var('opt_id', 'uint32_t', desc = 'Optional Identifier')
+            elif is_bigger_than_any(7,optVar):
+                v = Var('opt_id', 'uint16_t', desc = 'Optional Identifier')
+            else: 
+                v = Var('opt_id', 'uint8_t', desc = 'Optional Identifier')            
+            hpp.append(v.as_decl())
+
         for f in node.findall('field'):
-            type = f.get('message-type')
             v = Var(get_name(f), get_cxx_type(f), desc = f.get('name'))
             hpp.append(v.as_decl())
+
         hpp.append('')
+
 
         for function in public:
             if function.is_inline():
@@ -384,10 +405,18 @@ class Message:
             cond += '({0} > {1})'.format(get_name(field), max_value)
 
     def get_fixed_size(self):
+
         size = 0
+
         if(self._node.get('optional')):
             optionals = self._node.get('optional')
             optVar = [int(value.strip()) for value in optionals.split(',')]
+            if is_bigger_than_any(15,optVar):
+                size += 4
+            elif is_bigger_than_any(7,optVar):
+                size += 2
+            else:
+                size += 1 
             for index, field in enumerate(self._node.findall('field')):
                 if index in optVar:
                     # This should be counted on the variable size method
