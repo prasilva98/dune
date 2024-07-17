@@ -117,7 +117,9 @@ class Message:
 
         # clear()
         f = Function('clear', 'void')
-        f.body('\n'.join([get_clear(field) for field in node.findall('field')]))
+        if node.get('optional'):
+            f.add_body('opt_id = 0;')
+        f.add_body('\n'.join([get_clear(field) for field in node.findall('field')]))
         public.append(f)
 
         # fieldsEqual()
@@ -165,6 +167,9 @@ class Message:
                 if index in optVar:
                     if field.get('type') == 'rawdata' or field.get('type') == 'plaintext':
                         f.add_body('if (!{}.empty()) setOptBit({});'.format(get_name(field), index))
+                    elif field.get('preset'):
+                        f.add_body('if ({} != {}) setOptBit({});'.format(get_name(field),
+                                                                field.get('preset').strip(), index))
                     else:
                         f.add_body('if ({} != 0) setOptBit({});'.format(get_name(field), index))
             public.append(f)
@@ -235,10 +240,10 @@ class Message:
         if self.has_fields():
             f.add_body('const uint8_t* start__ = bfr__;')
             for field in node.findall('field'):
-                if consts['sizes'][field.get('type')] == 1:
-                    f.add_body('bfr__ += IMC::deserialize({0}, bfr__, size__);'.format(get_name(field)))
-                elif field.get('type').startswith('message'):
+                if field.get('type').startswith('message'):
                     f.add_body('bfr__ += %s.reverseDeserialize(bfr__, size__);' % get_name(field))
+                elif consts['sizes'][field.get('type')] == 1:
+                    f.add_body('bfr__ += IMC::deserialize({0}, bfr__, size__);'.format(get_name(field)))
                 else:
                     f.add_body('bfr__ += IMC::reverseDeserialize(%s, bfr__, size__);' % get_name(field))
             f.add_body('return bfr__ - start__;')
@@ -437,7 +442,7 @@ class Message:
 
             optionals = self._node.get('optional')
             optVar = [int(value.strip()) for value in optionals.split(',')]
-    
+
             for index, field in enumerate(self._node.findall('field')):
                 type = field.get('type')
                 abbrev = get_name(field)
@@ -449,7 +454,15 @@ class Message:
                     else:
                         size.append("checkOptBit({})*{}".format(index, 
                                                 self._consts['sizes'][field.get('type')]))
+        else:  
 
+            for field in self._node.findall('field'):
+                type = field.get('type')
+                abbrev = get_name(field)
+                if type == 'plaintext' or type == 'rawdata':
+                    size.append('IMC::getSerializationSize(%s)' % abbrev)
+                elif type == 'message' or type == 'message-list':
+                    size.append(abbrev + '.getSerializationSize()')
 
         return ' + '.join(size)
 
