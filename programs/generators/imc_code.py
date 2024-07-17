@@ -163,7 +163,10 @@ class Message:
             for index, field in enumerate(node.findall('field')):
                 # Here we will need to know which variables we are going to have to check
                 if index in optVar:
-                    f.add_body('if ({} != 0) setOptBit({});'.format(get_name(field), index))
+                    if field.get('type') == 'rawdata' or field.get('type') == 'plaintext':
+                        f.add_body('if (!{}.empty()) setOptBit({});'.format(get_name(field), index))
+                    else:
+                        f.add_body('if ({} != 0) setOptBit({});'.format(get_name(field), index))
             public.append(f)
      
         # Serialize fields also needs to be changed based on the existance of optional variable or not.
@@ -439,12 +442,15 @@ class Message:
                 type = field.get('type')
                 abbrev = get_name(field)
                 if index in optVar:
-                    size.append("checkOptBit({})*{}".format(index, 
+                    if type == 'plaintext' or type == 'rawdata':
+                        size.append('IMC::getSerializationSize(%s)*checkOptBit(%d)' % (abbrev, index))
+                    elif type == 'message' or type == 'message-list':
+                        size.append(abbrev + '.getSerializationSize()')
+                    else:
+                        size.append("checkOptBit({})*{}".format(index, 
                                                 self._consts['sizes'][field.get('type')]))
-                elif type == 'plaintext' or type == 'rawdata':
-                    size.append('IMC::getSerializationSize(%s)' % abbrev)
-                elif type == 'message' or type == 'message-list':
-                    size.append(abbrev + '.getSerializationSize()')
+
+
         return ' + '.join(size)
 
     # Retrieve a list of abbreviations of variable length fields.
