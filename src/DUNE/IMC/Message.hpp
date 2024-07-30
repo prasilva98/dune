@@ -80,7 +80,7 @@ namespace DUNE
       //! message field.
       virtual int
       validate(void) const = 0;
-
+      
       //! Retrieve message's name.
       //! @return message's name.
       virtual const char*
@@ -125,6 +125,9 @@ namespace DUNE
       {
         return m_header.src;
       }
+
+      virtual void 
+      updateOptVar(void) {};
 
       //! Set message's source.
       //! @param src message's source.
@@ -280,6 +283,22 @@ namespace DUNE
       //! @return number of bytes processed.
       virtual uint16_t
       deserializeFields(const uint8_t* bfr, uint16_t len) = 0;
+
+      virtual uint8_t*
+      serializeFieldsOptional(uint8_t* bfr)
+      { 
+        return serializeFields(bfr);
+      };
+
+      //! Deserialize message fields from a packet.
+      //! @param bfr stream of bytes (packet)
+      //! @param len length of the byte stream.
+      //! @return number of bytes processed.
+      virtual uint16_t
+      deserializeFieldsOptional(const uint8_t* bfr, uint16_t len)
+      {
+        return deserializeFields(bfr, len);
+      };
 
       //! Deserialize message fields from a packet, swapping the byte order.
       //! @param bfr stream of bytes (packet)

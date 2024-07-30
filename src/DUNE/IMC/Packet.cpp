@@ -71,7 +71,7 @@ namespace DUNE
       unsigned size = msg->getSerializationSize();
       if (size > 65535)
         throw InvalidMessageSize(size);
-
+      
       bfr.setSize(size);
       return serialize(msg, bfr.getBuffer(), size);
     }
@@ -100,8 +100,9 @@ namespace DUNE
 
       // Check if we can unpack the message.
       if (hdr.size > bfr_len - (DUNE_IMC_CONST_HEADER_SIZE + DUNE_IMC_CONST_FOOTER_SIZE))
+      {
         throw BufferTooShort();
-
+      }
       return deserializePayload(hdr, bfr, bfr_len, msg);
     }
 
@@ -274,5 +275,99 @@ namespace DUNE
 
       return msg;
     }
+
+    uint16_t
+    Packet::serializeOptional(Message* msg, Utils::ByteBuffer& bfr)  
+    {
+      
+      msg->updateOptVar();
+      // Get the necessary buffer size
+      unsigned size = msg->getSerializationSize();
+      if (size > DUNE_IMC_CONST_MAX_SIZE)
+        throw InvalidMessageSize(size);
+      // Set it
+      bfr.setSize(size);
+
+      uint16_t n = size;
+      uint8_t* ptr = bfr.getBuffer();
+
+      if (size < n)
+        throw BufferTooShort();
+      
+      ptr += serializeHeader(msg, bfr.getBuffer(), size);
+      msg->serializeFieldsOptional(ptr);
+
+      uint16_t crc = Algorithms::CRC16::compute(bfr.getBuffer(), n - DUNE_IMC_CONST_FOOTER_SIZE);
+      IMC::serialize(crc, (bfr.getBuffer() + (n - DUNE_IMC_CONST_FOOTER_SIZE)));
+
+      return n;
+    }
+
+    Message*
+    Packet::deserializeOptional(const uint8_t* bfr, uint16_t bfr_len, Message* msg)
+    {
+
+      Header hdr;
+      // Get the message header.
+      deserializeHeader(hdr, bfr, bfr_len);
+      // Check if we can unpack the message.
+      if (hdr.size > bfr_len - (DUNE_IMC_CONST_HEADER_SIZE + DUNE_IMC_CONST_FOOTER_SIZE))
+      {
+        throw BufferTooShort();
+      }
+
+      (void)bfr_len;
+
+      // Retrieve CRC
+      uint16_t rcrc = 0;
+
+      if (hdr.sync == DUNE_IMC_CONST_SYNC_REV)
+        Utils::ByteCopy::rcopy(rcrc, bfr + DUNE_IMC_CONST_HEADER_SIZE + hdr.size);
+      else
+        Utils::ByteCopy::copy(rcrc, bfr + DUNE_IMC_CONST_HEADER_SIZE + hdr.size);
+      
+      // Validate CRC.
+      uint16_t crc = Algorithms::CRC16::compute(bfr, DUNE_IMC_CONST_HEADER_SIZE + hdr.size);
+
+      if (crc != rcrc)
+        throw InvalidCrc();
+
+      // Produce a message of the given type.
+      if (msg == NULL)
+      {
+        msg = Factory::produce(hdr.mgid);
+
+        if (msg == 0)
+          throw InvalidMessageId(hdr.mgid);
+      }
+      else
+      {
+        if (msg->getId() != hdr.mgid)
+          throw InvalidMessageId(hdr.mgid);
+      }
+
+      // Deserialize message fields.
+      try
+      {
+        if (hdr.sync == DUNE_IMC_CONST_SYNC_REV)
+          msg->reverseDeserializeFields(bfr + DUNE_IMC_CONST_HEADER_SIZE, hdr.size);
+        else
+          msg->deserializeFieldsOptional(bfr + DUNE_IMC_CONST_HEADER_SIZE, hdr.size);
+      }
+      catch (...)
+      {
+        delete msg;
+        throw;
+      }
+
+      msg->setTimeStamp(hdr.timestamp);
+      msg->setSource(hdr.src);
+      msg->setSourceEntity(hdr.src_ent);
+      msg->setDestination(hdr.dst);
+      msg->setDestinationEntity(hdr.dst_ent);
+
+      return msg;
+    }
+
   }
 }

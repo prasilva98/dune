@@ -76,6 +76,9 @@ namespace DUNE
       static uint16_t
       serialize(const Message* msg, std::ostream& ofs);
 
+      static uint16_t
+      serializeOptional(Message* msg, Utils::ByteBuffer& bfr);  
+
       static Message*
       deserialize(const uint8_t* bfr, uint16_t bfr_len, Message* msg = NULL);
 
@@ -84,6 +87,9 @@ namespace DUNE
 
       static Message*
       deserialize(std::istream& ifs, Utils::ByteBuffer& bfr);
+
+      static Message*
+      deserializeOptional(const uint8_t* bfr, uint16_t bfr_len, Message* msg = NULL);
 
       static uint16_t
       serializeHeader(const Message* msg, uint8_t* bfr, uint16_t bfr_len);

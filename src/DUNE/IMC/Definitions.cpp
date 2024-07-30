@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 4f597412977cdf88943cdd06e8c1ed42                            *
+// IMC XML MD5: 06bab9b4b83172a64c5df69c4c3b9286                            *
 //***************************************************************************
 
 // ISO C++ 98 headers.
@@ -62,6 +62,7 @@ namespace DUNE
       state = 0;
       flags = 0;
       description.clear();
+      opt_id = 1;
     }
 
     bool
@@ -78,6 +79,37 @@ namespace DUNE
     EntityState::validate(void) const
     {
       return true;
+    }
+
+    void
+    EntityState::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (state != 0) setOptBit(0);
+      if (flags != 0) setOptBit(1);
+      if (!description.empty()) setOptBit(2);
+    }
+
+    uint8_t*
+    EntityState::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(state, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(flags, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(description, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    EntityState::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(state, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(flags, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(description, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -328,6 +360,7 @@ namespace DUNE
     {
       op = 0;
       list.clear();
+      opt_id = 1;
     }
 
     bool
@@ -343,6 +376,34 @@ namespace DUNE
     EntityList::validate(void) const
     {
       return true;
+    }
+
+    void
+    EntityList::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (op != 0) setOptBit(0);
+      if (!list.empty()) setOptBit(1);
+    }
+
+    uint8_t*
+    EntityList::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(op, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(list, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    EntityList::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(op, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(list, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -389,6 +450,7 @@ namespace DUNE
     CpuUsage::clear(void)
     {
       value = 0;
+      opt_id = 1;
     }
 
     bool
@@ -404,6 +466,31 @@ namespace DUNE
     {
       if (value > 100) return false;
       return true;
+    }
+
+    void
+    CpuUsage::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (value != 0) setOptBit(0);
+    }
+
+    uint8_t*
+    CpuUsage::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(value, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    CpuUsage::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(value, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -576,6 +663,7 @@ namespace DUNE
     DevCalibrationControl::clear(void)
     {
       op = 0;
+      opt_id = 1;
     }
 
     bool
@@ -590,6 +678,31 @@ namespace DUNE
     DevCalibrationControl::validate(void) const
     {
       return true;
+    }
+
+    void
+    DevCalibrationControl::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (op != 0) setOptBit(0);
+    }
+
+    uint8_t*
+    DevCalibrationControl::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(op, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    DevCalibrationControl::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(op, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -635,6 +748,7 @@ namespace DUNE
       step_number = 0;
       step.clear();
       flags = 0;
+      opt_id = 1;
     }
 
     bool
@@ -652,6 +766,40 @@ namespace DUNE
     DevCalibrationState::validate(void) const
     {
       return true;
+    }
+
+    void
+    DevCalibrationState::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (total_steps != 0) setOptBit(0);
+      if (step_number != 0) setOptBit(1);
+      if (!step.empty()) setOptBit(2);
+      if (flags != 0) setOptBit(3);
+    }
+
+    uint8_t*
+    DevCalibrationState::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(total_steps, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(step_number, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(step, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(flags, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    DevCalibrationState::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(total_steps, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(step_number, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(step, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(flags, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -707,6 +855,7 @@ namespace DUNE
     {
       state = 0;
       error.clear();
+      opt_id = 1;
     }
 
     bool
@@ -722,6 +871,34 @@ namespace DUNE
     EntityActivationState::validate(void) const
     {
       return true;
+    }
+
+    void
+    EntityActivationState::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (state != 0) setOptBit(0);
+      if (!error.empty()) setOptBit(1);
+    }
+
+    uint8_t*
+    EntityActivationState::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(state, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(error, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    EntityActivationState::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(state, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(error, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -1084,6 +1261,7 @@ namespace DUNE
       svx = 0;
       svy = 0;
       svz = 0;
+      opt_id = 1;
     }
 
     bool
@@ -1123,6 +1301,82 @@ namespace DUNE
       if (q < -3.141592653589793 || q > 3.141592653589793) return false;
       if (r < -3.141592653589793 || r > 3.141592653589793) return false;
       return true;
+    }
+
+    void
+    SimulatedState::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (lat != 0) setOptBit(0);
+      if (lon != 0) setOptBit(1);
+      if (height != 0) setOptBit(2);
+      if (x != 0) setOptBit(3);
+      if (y != 0) setOptBit(4);
+      if (z != 0) setOptBit(5);
+      if (phi != 0) setOptBit(6);
+      if (theta != 0) setOptBit(7);
+      if (psi != 0) setOptBit(8);
+      if (u != 0) setOptBit(9);
+      if (v != 0) setOptBit(10);
+      if (w != 0) setOptBit(11);
+      if (p != 0) setOptBit(12);
+      if (q != 0) setOptBit(13);
+      if (r != 0) setOptBit(14);
+      if (svx != 0) setOptBit(15);
+      if (svy != 0) setOptBit(16);
+      if (svz != 0) setOptBit(17);
+    }
+
+    uint8_t*
+    SimulatedState::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(lat, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(lon, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(height, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(x, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(y, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(z, ptr__);
+      if (checkOptBit(6)) ptr__ += IMC::serialize(phi, ptr__);
+      if (checkOptBit(7)) ptr__ += IMC::serialize(theta, ptr__);
+      if (checkOptBit(8)) ptr__ += IMC::serialize(psi, ptr__);
+      if (checkOptBit(9)) ptr__ += IMC::serialize(u, ptr__);
+      if (checkOptBit(10)) ptr__ += IMC::serialize(v, ptr__);
+      if (checkOptBit(11)) ptr__ += IMC::serialize(w, ptr__);
+      if (checkOptBit(12)) ptr__ += IMC::serialize(p, ptr__);
+      if (checkOptBit(13)) ptr__ += IMC::serialize(q, ptr__);
+      if (checkOptBit(14)) ptr__ += IMC::serialize(r, ptr__);
+      if (checkOptBit(15)) ptr__ += IMC::serialize(svx, ptr__);
+      if (checkOptBit(16)) ptr__ += IMC::serialize(svy, ptr__);
+      if (checkOptBit(17)) ptr__ += IMC::serialize(svz, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    SimulatedState::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(lat, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(lon, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(height, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(x, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(y, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(z, bfr__, size__);
+      if (checkOptBit(6)) bfr__ += IMC::deserialize(phi, bfr__, size__);
+      if (checkOptBit(7)) bfr__ += IMC::deserialize(theta, bfr__, size__);
+      if (checkOptBit(8)) bfr__ += IMC::deserialize(psi, bfr__, size__);
+      if (checkOptBit(9)) bfr__ += IMC::deserialize(u, bfr__, size__);
+      if (checkOptBit(10)) bfr__ += IMC::deserialize(v, bfr__, size__);
+      if (checkOptBit(11)) bfr__ += IMC::deserialize(w, bfr__, size__);
+      if (checkOptBit(12)) bfr__ += IMC::deserialize(p, bfr__, size__);
+      if (checkOptBit(13)) bfr__ += IMC::deserialize(q, bfr__, size__);
+      if (checkOptBit(14)) bfr__ += IMC::deserialize(r, bfr__, size__);
+      if (checkOptBit(15)) bfr__ += IMC::deserialize(svx, bfr__, size__);
+      if (checkOptBit(16)) bfr__ += IMC::deserialize(svy, bfr__, size__);
+      if (checkOptBit(17)) bfr__ += IMC::deserialize(svz, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -1432,6 +1686,7 @@ namespace DUNE
     {
       available = 0;
       value = 0;
+      opt_id = 1;
     }
 
     bool
@@ -1448,6 +1703,34 @@ namespace DUNE
     {
       if (value > 100) return false;
       return true;
+    }
+
+    void
+    StorageUsage::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (available != 0) setOptBit(0);
+      if (value != 0) setOptBit(1);
+    }
+
+    uint8_t*
+    StorageUsage::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(available, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(value, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    StorageUsage::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(available, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(value, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -1685,6 +1968,7 @@ namespace DUNE
       htime = 0;
       context.clear();
       text.clear();
+      opt_id = 1;
     }
 
     bool
@@ -1702,6 +1986,39 @@ namespace DUNE
     LogBookEntry::validate(void) const
     {
       return true;
+    }
+
+    void
+    LogBookEntry::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (type != 0) setOptBit(0);
+      if (htime != 0) setOptBit(1);
+      if (!text.empty()) setOptBit(3);
+    }
+
+    uint8_t*
+    LogBookEntry::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(type, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(htime, ptr__);
+      ptr__ += IMC::serialize(context, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(text, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    LogBookEntry::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(type, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(htime, bfr__, size__);
+      bfr__ += IMC::deserialize(context, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(text, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -1759,6 +2076,7 @@ namespace DUNE
       command = 0;
       htime = 0;
       msg.clear();
+      opt_id = 1;
     }
 
     bool
@@ -1775,6 +2093,41 @@ namespace DUNE
     LogBookControl::validate(void) const
     {
       return true;
+    }
+
+    void
+    LogBookControl::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (command != 0) setOptBit(0);
+      if (htime != 0) setOptBit(1);
+      if (!msg.empty())
+      {
+        setOptBit(2);
+        msg.updateOptVar();
+      }
+    }
+
+    uint8_t*
+    LogBookControl::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(command, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(htime, ptr__);
+      if (checkOptBit(2)) ptr__ += msg.serializeOptional(ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    LogBookControl::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(command, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(htime, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += msg.deserializeOptional(bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -3199,6 +3552,7 @@ namespace DUNE
       lat = 0;
       lon = 0;
       data.clear();
+      opt_id = 1;
     }
 
     bool
@@ -3217,6 +3571,43 @@ namespace DUNE
     IridiumMsgRx::validate(void) const
     {
       return true;
+    }
+
+    void
+    IridiumMsgRx::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (!origin.empty()) setOptBit(0);
+      if (htime != 0) setOptBit(1);
+      if (lat != 0) setOptBit(2);
+      if (lon != 0) setOptBit(3);
+      if (!data.empty()) setOptBit(4);
+    }
+
+    uint8_t*
+    IridiumMsgRx::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(origin, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(htime, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(lat, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(lon, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(data, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    IridiumMsgRx::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(origin, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(htime, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(lat, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(lon, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(data, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -3278,6 +3669,7 @@ namespace DUNE
       ttl = 0;
       destination.clear();
       data.clear();
+      opt_id = 1;
     }
 
     bool
@@ -3295,6 +3687,40 @@ namespace DUNE
     IridiumMsgTx::validate(void) const
     {
       return true;
+    }
+
+    void
+    IridiumMsgTx::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (req_id != 0) setOptBit(0);
+      if (ttl != 0) setOptBit(1);
+      if (!destination.empty()) setOptBit(2);
+      if (!data.empty()) setOptBit(3);
+    }
+
+    uint8_t*
+    IridiumMsgTx::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(req_id, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(ttl, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(destination, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(data, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    IridiumMsgTx::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(req_id, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(ttl, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(destination, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(data, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -3351,6 +3777,7 @@ namespace DUNE
       req_id = 0;
       status = 0;
       text.clear();
+      opt_id = 1;
     }
 
     bool
@@ -3367,6 +3794,37 @@ namespace DUNE
     IridiumTxStatus::validate(void) const
     {
       return true;
+    }
+
+    void
+    IridiumTxStatus::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (req_id != 0) setOptBit(0);
+      if (status != 0) setOptBit(1);
+      if (!text.empty()) setOptBit(2);
+    }
+
+    uint8_t*
+    IridiumTxStatus::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(req_id, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(status, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(text, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    IridiumTxStatus::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(req_id, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(status, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(text, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -4432,6 +4890,7 @@ namespace DUNE
     {
       id = 0;
       range = 0;
+      opt_id = 1;
     }
 
     bool
@@ -4447,6 +4906,34 @@ namespace DUNE
     LblRange::validate(void) const
     {
       return true;
+    }
+
+    void
+    LblRange::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (id != 0) setOptBit(0);
+      if (range != 0) setOptBit(1);
+    }
+
+    uint8_t*
+    LblRange::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(id, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(range, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    LblRange::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(id, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(range, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -4511,6 +4998,7 @@ namespace DUNE
       query_channel = 0;
       reply_channel = 0;
       transponder_delay = 0;
+      opt_id = 1;
     }
 
     bool
@@ -4533,6 +5021,49 @@ namespace DUNE
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
       return true;
+    }
+
+    void
+    LblBeacon::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (!beacon.empty()) setOptBit(0);
+      if (lat != 0) setOptBit(1);
+      if (lon != 0) setOptBit(2);
+      if (depth != 0) setOptBit(3);
+      if (query_channel != 0) setOptBit(4);
+      if (reply_channel != 0) setOptBit(5);
+      if (transponder_delay != 0) setOptBit(6);
+    }
+
+    uint8_t*
+    LblBeacon::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(beacon, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(lat, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(lon, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(depth, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(query_channel, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(reply_channel, ptr__);
+      if (checkOptBit(6)) ptr__ += IMC::serialize(transponder_delay, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    LblBeacon::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(beacon, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(lat, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(lon, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(depth, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(query_channel, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(reply_channel, bfr__, size__);
+      if (checkOptBit(6)) bfr__ += IMC::deserialize(transponder_delay, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -4601,6 +5132,7 @@ namespace DUNE
     {
       op = 0;
       beacons.clear();
+      opt_id = 1;
     }
 
     bool
@@ -4616,6 +5148,38 @@ namespace DUNE
     LblConfig::validate(void) const
     {
       return true;
+    }
+
+    void
+    LblConfig::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (op != 0) setOptBit(0);
+      if (!beacons.empty())
+      {
+        setOptBit(1);
+        beacons.updateOptVar();
+      }
+    }
+
+    uint8_t*
+    LblConfig::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(op, ptr__);
+      if (checkOptBit(1)) ptr__ += beacons.serializeOptional(ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    LblConfig::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(op, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += beacons.deserializeOptional(bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -5467,6 +6031,7 @@ namespace DUNE
     Rpm::clear(void)
     {
       value = 0;
+      opt_id = 1;
     }
 
     bool
@@ -5481,6 +6046,31 @@ namespace DUNE
     Rpm::validate(void) const
     {
       return true;
+    }
+
+    void
+    Rpm::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (value != 0) setOptBit(0);
+    }
+
+    uint8_t*
+    Rpm::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(value, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    Rpm::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(value, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -5535,6 +6125,7 @@ namespace DUNE
     Voltage::clear(void)
     {
       value = 0;
+      opt_id = 1;
     }
 
     bool
@@ -5549,6 +6140,31 @@ namespace DUNE
     Voltage::validate(void) const
     {
       return true;
+    }
+
+    void
+    Voltage::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (value != 0) setOptBit(0);
+    }
+
+    uint8_t*
+    Voltage::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(value, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    Voltage::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(value, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -5603,6 +6219,7 @@ namespace DUNE
     Current::clear(void)
     {
       value = 0;
+      opt_id = 1;
     }
 
     bool
@@ -5617,6 +6234,31 @@ namespace DUNE
     Current::validate(void) const
     {
       return true;
+    }
+
+    void
+    Current::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (value != 0) setOptBit(0);
+    }
+
+    uint8_t*
+    Current::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(value, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    Current::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(value, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -5686,6 +6328,7 @@ namespace DUNE
       vdop = 0;
       hacc = 0;
       vacc = 0;
+      opt_id = 1;
     }
 
     bool
@@ -5717,6 +6360,76 @@ namespace DUNE
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
       return true;
+    }
+
+    void
+    GpsFix::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (validity != 0) setOptBit(0);
+      if (type != 0) setOptBit(1);
+      if (utc_year != 0) setOptBit(2);
+      if (utc_month != 0) setOptBit(3);
+      if (utc_day != 0) setOptBit(4);
+      if (utc_time != 0) setOptBit(5);
+      if (lat != 0) setOptBit(6);
+      if (lon != 0) setOptBit(7);
+      if (height != 0) setOptBit(8);
+      if (satellites != 0) setOptBit(9);
+      if (cog != 0) setOptBit(10);
+      if (sog != 0) setOptBit(11);
+      if (hdop != 0) setOptBit(12);
+      if (vdop != 0) setOptBit(13);
+      if (hacc != 0) setOptBit(14);
+      if (vacc != 0) setOptBit(15);
+    }
+
+    uint8_t*
+    GpsFix::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(validity, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(type, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(utc_year, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(utc_month, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(utc_day, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(utc_time, ptr__);
+      if (checkOptBit(6)) ptr__ += IMC::serialize(lat, ptr__);
+      if (checkOptBit(7)) ptr__ += IMC::serialize(lon, ptr__);
+      if (checkOptBit(8)) ptr__ += IMC::serialize(height, ptr__);
+      if (checkOptBit(9)) ptr__ += IMC::serialize(satellites, ptr__);
+      if (checkOptBit(10)) ptr__ += IMC::serialize(cog, ptr__);
+      if (checkOptBit(11)) ptr__ += IMC::serialize(sog, ptr__);
+      if (checkOptBit(12)) ptr__ += IMC::serialize(hdop, ptr__);
+      if (checkOptBit(13)) ptr__ += IMC::serialize(vdop, ptr__);
+      if (checkOptBit(14)) ptr__ += IMC::serialize(hacc, ptr__);
+      if (checkOptBit(15)) ptr__ += IMC::serialize(vacc, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    GpsFix::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(validity, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(type, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(utc_year, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(utc_month, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(utc_day, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(utc_time, bfr__, size__);
+      if (checkOptBit(6)) bfr__ += IMC::deserialize(lat, bfr__, size__);
+      if (checkOptBit(7)) bfr__ += IMC::deserialize(lon, bfr__, size__);
+      if (checkOptBit(8)) bfr__ += IMC::deserialize(height, bfr__, size__);
+      if (checkOptBit(9)) bfr__ += IMC::deserialize(satellites, bfr__, size__);
+      if (checkOptBit(10)) bfr__ += IMC::deserialize(cog, bfr__, size__);
+      if (checkOptBit(11)) bfr__ += IMC::deserialize(sog, bfr__, size__);
+      if (checkOptBit(12)) bfr__ += IMC::deserialize(hdop, bfr__, size__);
+      if (checkOptBit(13)) bfr__ += IMC::deserialize(vdop, bfr__, size__);
+      if (checkOptBit(14)) bfr__ += IMC::deserialize(hacc, bfr__, size__);
+      if (checkOptBit(15)) bfr__ += IMC::deserialize(vacc, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -6432,6 +7145,7 @@ namespace DUNE
       phi = 0;
       theta = 0;
       psi = 0;
+      opt_id = 1;
     }
 
     bool
@@ -6451,6 +7165,46 @@ namespace DUNE
     DeviceState::validate(void) const
     {
       return true;
+    }
+
+    void
+    DeviceState::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (x != 0) setOptBit(0);
+      if (y != 0) setOptBit(1);
+      if (z != 0) setOptBit(2);
+      if (phi != 0) setOptBit(3);
+      if (theta != 0) setOptBit(4);
+      if (psi != 0) setOptBit(5);
+    }
+
+    uint8_t*
+    DeviceState::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(x, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(y, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(z, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(phi, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(theta, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(psi, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    DeviceState::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(x, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(y, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(z, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(phi, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(theta, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(psi, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -6514,6 +7268,7 @@ namespace DUNE
     {
       beam_width = 0;
       beam_height = 0;
+      opt_id = 1;
     }
 
     bool
@@ -6531,6 +7286,34 @@ namespace DUNE
       if (beam_width < 0 || beam_width > 3.141592653589793) return false;
       if (beam_height < 0 || beam_height > 3.141592653589793) return false;
       return true;
+    }
+
+    void
+    BeamConfig::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (beam_width != 0) setOptBit(0);
+      if (beam_height != 0) setOptBit(1);
+    }
+
+    uint8_t*
+    BeamConfig::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(beam_width, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(beam_height, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    BeamConfig::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(beam_width, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(beam_height, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -6582,6 +7365,7 @@ namespace DUNE
       location.clear();
       beam_config.clear();
       value = 0;
+      opt_id = 1;
     }
 
     bool
@@ -6599,6 +7383,48 @@ namespace DUNE
     Distance::validate(void) const
     {
       return true;
+    }
+
+    void
+    Distance::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (validity != 0) setOptBit(0);
+      if (!location.empty())
+      {
+        setOptBit(1);
+        location.updateOptVar();
+      }
+      if (!beam_config.empty())
+      {
+        setOptBit(2);
+        beam_config.updateOptVar();
+      }
+      if (value != 0) setOptBit(3);
+    }
+
+    uint8_t*
+    Distance::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(validity, ptr__);
+      if (checkOptBit(1)) ptr__ += location.serializeOptional(ptr__);
+      if (checkOptBit(2)) ptr__ += beam_config.serializeOptional(ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(value, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    Distance::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(validity, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += location.deserializeOptional(bfr__, size__);
+      if (checkOptBit(2)) bfr__ += beam_config.deserializeOptional(bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(value, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -6705,6 +7531,7 @@ namespace DUNE
     Temperature::clear(void)
     {
       value = 0;
+      opt_id = 1;
     }
 
     bool
@@ -6719,6 +7546,31 @@ namespace DUNE
     Temperature::validate(void) const
     {
       return true;
+    }
+
+    void
+    Temperature::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (value != 0) setOptBit(0);
+    }
+
+    uint8_t*
+    Temperature::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(value, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    Temperature::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(value, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -7792,6 +8644,7 @@ namespace DUNE
       value = 0;
       confidence = 0;
       opmodes.clear();
+      opt_id = 1;
     }
 
     bool
@@ -7810,6 +8663,37 @@ namespace DUNE
       if (value < 0 || value > 100) return false;
       if (confidence < 0 || confidence > 100) return false;
       return true;
+    }
+
+    void
+    FuelLevel::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (value != 0) setOptBit(0);
+      if (confidence != 0) setOptBit(1);
+      if (!opmodes.empty()) setOptBit(2);
+    }
+
+    uint8_t*
+    FuelLevel::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(value, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(confidence, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(opmodes, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    FuelLevel::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(value, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(confidence, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(opmodes, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -8860,6 +9744,7 @@ namespace DUNE
       r = 0;
       depth = 0;
       alt = 0;
+      opt_id = 1;
     }
 
     bool
@@ -8901,6 +9786,88 @@ namespace DUNE
       if (q < -3.141592653589793 || q > 3.141592653589793) return false;
       if (r < -3.141592653589793 || r > 3.141592653589793) return false;
       return true;
+    }
+
+    void
+    EstimatedState::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (lat != 0) setOptBit(0);
+      if (lon != 0) setOptBit(1);
+      if (height != 0) setOptBit(2);
+      if (x != 0) setOptBit(3);
+      if (y != 0) setOptBit(4);
+      if (z != 0) setOptBit(5);
+      if (phi != 0) setOptBit(6);
+      if (theta != 0) setOptBit(7);
+      if (psi != 0) setOptBit(8);
+      if (u != 0) setOptBit(9);
+      if (v != 0) setOptBit(10);
+      if (w != 0) setOptBit(11);
+      if (vx != 0) setOptBit(12);
+      if (vy != 0) setOptBit(13);
+      if (vz != 0) setOptBit(14);
+      if (p != 0) setOptBit(15);
+      if (q != 0) setOptBit(16);
+      if (r != 0) setOptBit(17);
+      if (depth != 0) setOptBit(18);
+      if (alt != 0) setOptBit(19);
+    }
+
+    uint8_t*
+    EstimatedState::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(lat, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(lon, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(height, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(x, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(y, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(z, ptr__);
+      if (checkOptBit(6)) ptr__ += IMC::serialize(phi, ptr__);
+      if (checkOptBit(7)) ptr__ += IMC::serialize(theta, ptr__);
+      if (checkOptBit(8)) ptr__ += IMC::serialize(psi, ptr__);
+      if (checkOptBit(9)) ptr__ += IMC::serialize(u, ptr__);
+      if (checkOptBit(10)) ptr__ += IMC::serialize(v, ptr__);
+      if (checkOptBit(11)) ptr__ += IMC::serialize(w, ptr__);
+      if (checkOptBit(12)) ptr__ += IMC::serialize(vx, ptr__);
+      if (checkOptBit(13)) ptr__ += IMC::serialize(vy, ptr__);
+      if (checkOptBit(14)) ptr__ += IMC::serialize(vz, ptr__);
+      if (checkOptBit(15)) ptr__ += IMC::serialize(p, ptr__);
+      if (checkOptBit(16)) ptr__ += IMC::serialize(q, ptr__);
+      if (checkOptBit(17)) ptr__ += IMC::serialize(r, ptr__);
+      if (checkOptBit(18)) ptr__ += IMC::serialize(depth, ptr__);
+      if (checkOptBit(19)) ptr__ += IMC::serialize(alt, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    EstimatedState::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(lat, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(lon, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(height, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(x, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(y, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(z, bfr__, size__);
+      if (checkOptBit(6)) bfr__ += IMC::deserialize(phi, bfr__, size__);
+      if (checkOptBit(7)) bfr__ += IMC::deserialize(theta, bfr__, size__);
+      if (checkOptBit(8)) bfr__ += IMC::deserialize(psi, bfr__, size__);
+      if (checkOptBit(9)) bfr__ += IMC::deserialize(u, bfr__, size__);
+      if (checkOptBit(10)) bfr__ += IMC::deserialize(v, bfr__, size__);
+      if (checkOptBit(11)) bfr__ += IMC::deserialize(w, bfr__, size__);
+      if (checkOptBit(12)) bfr__ += IMC::deserialize(vx, bfr__, size__);
+      if (checkOptBit(13)) bfr__ += IMC::deserialize(vy, bfr__, size__);
+      if (checkOptBit(14)) bfr__ += IMC::deserialize(vz, bfr__, size__);
+      if (checkOptBit(15)) bfr__ += IMC::deserialize(p, bfr__, size__);
+      if (checkOptBit(16)) bfr__ += IMC::deserialize(q, bfr__, size__);
+      if (checkOptBit(17)) bfr__ += IMC::deserialize(r, bfr__, size__);
+      if (checkOptBit(18)) bfr__ += IMC::deserialize(depth, bfr__, size__);
+      if (checkOptBit(19)) bfr__ += IMC::deserialize(alt, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -9796,6 +10763,7 @@ namespace DUNE
     {
       op = 0;
       actions.clear();
+      opt_id = 1;
     }
 
     bool
@@ -9811,6 +10779,34 @@ namespace DUNE
     RemoteActionsRequest::validate(void) const
     {
       return true;
+    }
+
+    void
+    RemoteActionsRequest::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (op != 0) setOptBit(0);
+      if (!actions.empty()) setOptBit(1);
+    }
+
+    uint8_t*
+    RemoteActionsRequest::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(op, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(actions, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    RemoteActionsRequest::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(op, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(actions, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -9857,6 +10853,7 @@ namespace DUNE
     RemoteActions::clear(void)
     {
       actions.clear();
+      opt_id = 1;
     }
 
     bool
@@ -9871,6 +10868,31 @@ namespace DUNE
     RemoteActions::validate(void) const
     {
       return true;
+    }
+
+    void
+    RemoteActions::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (!actions.empty()) setOptBit(0);
+    }
+
+    uint8_t*
+    RemoteActions::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(actions, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    RemoteActions::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(actions, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -10226,6 +11248,7 @@ namespace DUNE
     {
       name.clear();
       state = 0;
+      opt_id = 1;
     }
 
     bool
@@ -10241,6 +11264,34 @@ namespace DUNE
     PowerChannelState::validate(void) const
     {
       return true;
+    }
+
+    void
+    PowerChannelState::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (!name.empty()) setOptBit(0);
+      if (state != 0) setOptBit(1);
+    }
+
+    uint8_t*
+    PowerChannelState::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(name, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(state, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    PowerChannelState::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(name, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(state, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -11094,6 +12145,7 @@ namespace DUNE
     {
       utc_time = 0;
       reason = 0;
+      opt_id = 1;
     }
 
     bool
@@ -11109,6 +12161,34 @@ namespace DUNE
     GpsFixRejection::validate(void) const
     {
       return true;
+    }
+
+    void
+    GpsFixRejection::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (utc_time != 0) setOptBit(0);
+      if (reason != 0) setOptBit(1);
+    }
+
+    uint8_t*
+    GpsFixRejection::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(utc_time, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(reason, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    GpsFixRejection::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(utc_time, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(reason, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -11157,6 +12237,7 @@ namespace DUNE
       id = 0;
       range = 0;
       acceptance = 0;
+      opt_id = 1;
     }
 
     bool
@@ -11173,6 +12254,37 @@ namespace DUNE
     LblRangeAcceptance::validate(void) const
     {
       return true;
+    }
+
+    void
+    LblRangeAcceptance::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (id != 0) setOptBit(0);
+      if (range != 0) setOptBit(1);
+      if (acceptance != 0) setOptBit(2);
+    }
+
+    uint8_t*
+    LblRangeAcceptance::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(id, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(range, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(acceptance, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    LblRangeAcceptance::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(id, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(range, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(acceptance, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -11327,6 +12439,7 @@ namespace DUNE
       var_x = 0;
       var_y = 0;
       distance = 0;
+      opt_id = 1;
     }
 
     bool
@@ -11346,6 +12459,50 @@ namespace DUNE
     LblEstimate::validate(void) const
     {
       return true;
+    }
+
+    void
+    LblEstimate::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (!beacon.isNull())
+      {
+        setOptBit(0);
+        beacon.get()->updateOptVar();
+      }
+      if (x != 0) setOptBit(1);
+      if (y != 0) setOptBit(2);
+      if (var_x != 0) setOptBit(3);
+      if (var_y != 0) setOptBit(4);
+      if (distance != 0) setOptBit(5);
+    }
+
+    uint8_t*
+    LblEstimate::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += beacon.serializeOptional(ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(x, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(y, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(var_x, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(var_y, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(distance, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    LblEstimate::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += beacon.deserializeOptional(bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(x, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(y, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(var_x, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(var_y, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(distance, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -11645,6 +12802,7 @@ namespace DUNE
     DesiredHeading::clear(void)
     {
       value = 0;
+      opt_id = 1;
     }
 
     bool
@@ -11659,6 +12817,31 @@ namespace DUNE
     DesiredHeading::validate(void) const
     {
       return true;
+    }
+
+    void
+    DesiredHeading::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (value != 0) setOptBit(0);
+    }
+
+    uint8_t*
+    DesiredHeading::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(value, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    DesiredHeading::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(value, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -11714,6 +12897,7 @@ namespace DUNE
     {
       value = 0;
       z_units = 0;
+      opt_id = 1;
     }
 
     bool
@@ -11729,6 +12913,34 @@ namespace DUNE
     DesiredZ::validate(void) const
     {
       return true;
+    }
+
+    void
+    DesiredZ::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (value != 0) setOptBit(0);
+      if (z_units != 0) setOptBit(1);
+    }
+
+    uint8_t*
+    DesiredZ::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(value, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(z_units, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    DesiredZ::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(value, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(z_units, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -12467,6 +13679,7 @@ namespace DUNE
       vz = 0;
       course_error = 0;
       eta = 0;
+      opt_id = 1;
     }
 
     bool
@@ -12503,6 +13716,85 @@ namespace DUNE
       if (end_lat < -1.5707963267948966 || end_lat > 1.5707963267948966) return false;
       if (end_lon < -3.141592653589793 || end_lon > 3.141592653589793) return false;
       return true;
+    }
+
+    void
+    PathControlState::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (path_ref != 0) setOptBit(0);
+      if (start_lat != 0) setOptBit(1);
+      if (start_lon != 0) setOptBit(2);
+      if (start_z != 0) setOptBit(3);
+      if (start_z_units != 0) setOptBit(4);
+      if (end_lat != 0) setOptBit(5);
+      if (end_lon != 0) setOptBit(6);
+      if (end_z != 0) setOptBit(7);
+      if (end_z_units != 0) setOptBit(8);
+      if (lradius != 0) setOptBit(9);
+      if (flags != 0) setOptBit(10);
+      if (x != 0) setOptBit(11);
+      if (y != 0) setOptBit(12);
+      if (z != 0) setOptBit(13);
+      if (vx != 0) setOptBit(14);
+      if (vy != 0) setOptBit(15);
+      if (vz != 0) setOptBit(16);
+      if (course_error != 0) setOptBit(17);
+      if (eta != 0) setOptBit(18);
+    }
+
+    uint8_t*
+    PathControlState::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(path_ref, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(start_lat, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(start_lon, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(start_z, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(start_z_units, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(end_lat, ptr__);
+      if (checkOptBit(6)) ptr__ += IMC::serialize(end_lon, ptr__);
+      if (checkOptBit(7)) ptr__ += IMC::serialize(end_z, ptr__);
+      if (checkOptBit(8)) ptr__ += IMC::serialize(end_z_units, ptr__);
+      if (checkOptBit(9)) ptr__ += IMC::serialize(lradius, ptr__);
+      if (checkOptBit(10)) ptr__ += IMC::serialize(flags, ptr__);
+      if (checkOptBit(11)) ptr__ += IMC::serialize(x, ptr__);
+      if (checkOptBit(12)) ptr__ += IMC::serialize(y, ptr__);
+      if (checkOptBit(13)) ptr__ += IMC::serialize(z, ptr__);
+      if (checkOptBit(14)) ptr__ += IMC::serialize(vx, ptr__);
+      if (checkOptBit(15)) ptr__ += IMC::serialize(vy, ptr__);
+      if (checkOptBit(16)) ptr__ += IMC::serialize(vz, ptr__);
+      if (checkOptBit(17)) ptr__ += IMC::serialize(course_error, ptr__);
+      if (checkOptBit(18)) ptr__ += IMC::serialize(eta, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    PathControlState::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(path_ref, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(start_lat, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(start_lon, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(start_z, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(start_z_units, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(end_lat, bfr__, size__);
+      if (checkOptBit(6)) bfr__ += IMC::deserialize(end_lon, bfr__, size__);
+      if (checkOptBit(7)) bfr__ += IMC::deserialize(end_z, bfr__, size__);
+      if (checkOptBit(8)) bfr__ += IMC::deserialize(end_z_units, bfr__, size__);
+      if (checkOptBit(9)) bfr__ += IMC::deserialize(lradius, bfr__, size__);
+      if (checkOptBit(10)) bfr__ += IMC::deserialize(flags, bfr__, size__);
+      if (checkOptBit(11)) bfr__ += IMC::deserialize(x, bfr__, size__);
+      if (checkOptBit(12)) bfr__ += IMC::deserialize(y, bfr__, size__);
+      if (checkOptBit(13)) bfr__ += IMC::deserialize(z, bfr__, size__);
+      if (checkOptBit(14)) bfr__ += IMC::deserialize(vx, bfr__, size__);
+      if (checkOptBit(15)) bfr__ += IMC::deserialize(vy, bfr__, size__);
+      if (checkOptBit(16)) bfr__ += IMC::deserialize(vz, bfr__, size__);
+      if (checkOptBit(17)) bfr__ += IMC::deserialize(course_error, bfr__, size__);
+      if (checkOptBit(18)) bfr__ += IMC::deserialize(eta, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -12992,7 +14284,6 @@ namespace DUNE
     void
     Goto::clear(void)
     {
-      opt_id = 0;
       timeout = 0;
       lat = 0;
       lon = 0;
@@ -13010,7 +14301,6 @@ namespace DUNE
     Goto::fieldsEqual(const Message& msg__) const
     {
       const IMC::Goto& other__ = static_cast<const Goto&>(msg__);
-      if (opt_id != other__.opt_id) return false;
       if (timeout != other__.timeout) return false;
       if (lat != other__.lat) return false;
       if (lon != other__.lon) return false;
@@ -13040,17 +14330,16 @@ namespace DUNE
     Goto::serializeFields(uint8_t* bfr__) const
     {
       uint8_t* ptr__ = bfr__;
-      ptr__ += IMC::serialize(opt_id, ptr__);
       ptr__ += IMC::serialize(timeout, ptr__);
       ptr__ += IMC::serialize(lat, ptr__);
-      if (checkOptBit(3)) ptr__ += IMC::serialize(lon, ptr__);
-      if (checkOptBit(4)) ptr__ += IMC::serialize(z, ptr__);
-      if (checkOptBit(5)) ptr__ += IMC::serialize(z_units, ptr__);
+      ptr__ += IMC::serialize(lon, ptr__);
+      ptr__ += IMC::serialize(z, ptr__);
+      ptr__ += IMC::serialize(z_units, ptr__);
       ptr__ += IMC::serialize(speed, ptr__);
       ptr__ += IMC::serialize(speed_units, ptr__);
-      if (checkOptBit(8)) ptr__ += IMC::serialize(roll, ptr__);
-      if (checkOptBit(9)) ptr__ += IMC::serialize(pitch, ptr__);
-      if (checkOptBit(10)) ptr__ += IMC::serialize(yaw, ptr__);
+      ptr__ += IMC::serialize(roll, ptr__);
+      ptr__ += IMC::serialize(pitch, ptr__);
+      ptr__ += IMC::serialize(yaw, ptr__);
       ptr__ += IMC::serialize(custom, ptr__);
       return ptr__;
     }
@@ -13059,17 +14348,16 @@ namespace DUNE
     Goto::deserializeFields(const uint8_t* bfr__, uint16_t size__)
     {
       const uint8_t* start__ = bfr__;
-      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
       bfr__ += IMC::deserialize(timeout, bfr__, size__);
       bfr__ += IMC::deserialize(lat, bfr__, size__);
-      if (checkOptBit(3)) bfr__ += IMC::deserialize(lon, bfr__, size__);
-      if (checkOptBit(4)) bfr__ += IMC::deserialize(z, bfr__, size__);
-      if (checkOptBit(5)) bfr__ += IMC::deserialize(z_units, bfr__, size__);
+      bfr__ += IMC::deserialize(lon, bfr__, size__);
+      bfr__ += IMC::deserialize(z, bfr__, size__);
+      bfr__ += IMC::deserialize(z_units, bfr__, size__);
       bfr__ += IMC::deserialize(speed, bfr__, size__);
       bfr__ += IMC::deserialize(speed_units, bfr__, size__);
-      if (checkOptBit(8)) bfr__ += IMC::deserialize(roll, bfr__, size__);
-      if (checkOptBit(9)) bfr__ += IMC::deserialize(pitch, bfr__, size__);
-      if (checkOptBit(10)) bfr__ += IMC::deserialize(yaw, bfr__, size__);
+      bfr__ += IMC::deserialize(roll, bfr__, size__);
+      bfr__ += IMC::deserialize(pitch, bfr__, size__);
+      bfr__ += IMC::deserialize(yaw, bfr__, size__);
       bfr__ += IMC::deserialize(custom, bfr__, size__);
       return bfr__ - start__;
     }
@@ -13078,7 +14366,6 @@ namespace DUNE
     Goto::reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__)
     {
       const uint8_t* start__ = bfr__;
-      bfr__ += IMC::reverseDeserialize(opt_id, bfr__, size__);
       bfr__ += IMC::reverseDeserialize(timeout, bfr__, size__);
       bfr__ += IMC::reverseDeserialize(lat, bfr__, size__);
       bfr__ += IMC::reverseDeserialize(lon, bfr__, size__);
@@ -13096,7 +14383,6 @@ namespace DUNE
     void
     Goto::fieldsToJSON(std::ostream& os__, unsigned nindent__) const
     {
-      IMC::toJSON(os__, "opt_id", opt_id, nindent__);
       IMC::toJSON(os__, "timeout", timeout, nindent__);
       IMC::toJSON(os__, "lat", lat, nindent__);
       IMC::toJSON(os__, "lon", lon, nindent__);
@@ -13308,6 +14594,7 @@ namespace DUNE
       bearing = 0;
       direction = 0;
       custom.clear();
+      opt_id = 1;
     }
 
     bool
@@ -13342,6 +14629,70 @@ namespace DUNE
       if (bearing < 0 || bearing > 6.283185307179586) return false;
       if (direction > 3) return false;
       return true;
+    }
+
+    void
+    Loiter::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (timeout != 0) setOptBit(0);
+      if (lat != 0) setOptBit(1);
+      if (lon != 0) setOptBit(2);
+      if (z != 0) setOptBit(3);
+      if (z_units != 0) setOptBit(4);
+      if (duration != 0) setOptBit(5);
+      if (speed != 0) setOptBit(6);
+      if (speed_units != 0) setOptBit(7);
+      if (type != 0) setOptBit(8);
+      if (radius != 0) setOptBit(9);
+      if (length != 0) setOptBit(10);
+      if (bearing != 0) setOptBit(11);
+      if (direction != 0) setOptBit(12);
+      if (!custom.empty()) setOptBit(13);
+    }
+
+    uint8_t*
+    Loiter::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(timeout, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(lat, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(lon, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(z, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(z_units, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(duration, ptr__);
+      if (checkOptBit(6)) ptr__ += IMC::serialize(speed, ptr__);
+      if (checkOptBit(7)) ptr__ += IMC::serialize(speed_units, ptr__);
+      if (checkOptBit(8)) ptr__ += IMC::serialize(type, ptr__);
+      if (checkOptBit(9)) ptr__ += IMC::serialize(radius, ptr__);
+      if (checkOptBit(10)) ptr__ += IMC::serialize(length, ptr__);
+      if (checkOptBit(11)) ptr__ += IMC::serialize(bearing, ptr__);
+      if (checkOptBit(12)) ptr__ += IMC::serialize(direction, ptr__);
+      if (checkOptBit(13)) ptr__ += IMC::serialize(custom, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    Loiter::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(timeout, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(lat, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(lon, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(z, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(z_units, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(duration, bfr__, size__);
+      if (checkOptBit(6)) bfr__ += IMC::deserialize(speed, bfr__, size__);
+      if (checkOptBit(7)) bfr__ += IMC::deserialize(speed_units, bfr__, size__);
+      if (checkOptBit(8)) bfr__ += IMC::deserialize(type, bfr__, size__);
+      if (checkOptBit(9)) bfr__ += IMC::deserialize(radius, bfr__, size__);
+      if (checkOptBit(10)) bfr__ += IMC::deserialize(length, bfr__, size__);
+      if (checkOptBit(11)) bfr__ += IMC::deserialize(bearing, bfr__, size__);
+      if (checkOptBit(12)) bfr__ += IMC::deserialize(direction, bfr__, size__);
+      if (checkOptBit(13)) bfr__ += IMC::deserialize(custom, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -15876,6 +17227,7 @@ namespace DUNE
       lat = 0;
       lon = 0;
       radius = 0;
+      opt_id = 1;
     }
 
     bool
@@ -15895,6 +17247,54 @@ namespace DUNE
     Reference::validate(void) const
     {
       return true;
+    }
+
+    void
+    Reference::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (flags != 0) setOptBit(0);
+      if (!speed.isNull())
+      {
+        setOptBit(1);
+        speed.get()->updateOptVar();
+      }
+      if (!z.isNull())
+      {
+        setOptBit(2);
+        z.get()->updateOptVar();
+      }
+      if (lat != 0) setOptBit(3);
+      if (lon != 0) setOptBit(4);
+      if (radius != 0) setOptBit(5);
+    }
+
+    uint8_t*
+    Reference::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(flags, ptr__);
+      if (checkOptBit(1)) ptr__ += speed.serializeOptional(ptr__);
+      if (checkOptBit(2)) ptr__ += z.serializeOptional(ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(lat, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(lon, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(radius, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    Reference::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(flags, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += speed.deserializeOptional(bfr__, size__);
+      if (checkOptBit(2)) bfr__ += z.deserializeOptional(bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(lat, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(lon, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(radius, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -16032,6 +17432,7 @@ namespace DUNE
       reference.clear();
       state = 0;
       proximity = 0;
+      opt_id = 1;
     }
 
     bool
@@ -16050,6 +17451,47 @@ namespace DUNE
     FollowRefState::validate(void) const
     {
       return true;
+    }
+
+    void
+    FollowRefState::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (control_src != 0) setOptBit(0);
+      if (control_ent != 0) setOptBit(1);
+      if (!reference.isNull())
+      {
+        setOptBit(2);
+        reference.get()->updateOptVar();
+      }
+      if (state != 0) setOptBit(3);
+      if (proximity != 0) setOptBit(4);
+    }
+
+    uint8_t*
+    FollowRefState::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(control_src, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(control_ent, ptr__);
+      if (checkOptBit(2)) ptr__ += reference.serializeOptional(ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(state, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(proximity, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    FollowRefState::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(control_src, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(control_ent, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += reference.deserializeOptional(bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(state, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(proximity, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -18274,6 +19716,7 @@ namespace DUNE
       flags = 0;
       last_error.clear();
       last_error_time = 0;
+      opt_id = 1;
     }
 
     bool
@@ -18297,6 +19740,58 @@ namespace DUNE
     VehicleState::validate(void) const
     {
       return true;
+    }
+
+    void
+    VehicleState::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (op_mode != 0) setOptBit(0);
+      if (error_count != 0) setOptBit(1);
+      if (!error_ents.empty()) setOptBit(2);
+      if (maneuver_type != 0) setOptBit(3);
+      if (maneuver_stime != 0) setOptBit(4);
+      if (maneuver_eta != 0) setOptBit(5);
+      if (control_loops != 0) setOptBit(6);
+      if (flags != 0) setOptBit(7);
+      if (!last_error.empty()) setOptBit(8);
+      if (last_error_time != 0) setOptBit(9);
+    }
+
+    uint8_t*
+    VehicleState::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(op_mode, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(error_count, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(error_ents, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(maneuver_type, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(maneuver_stime, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(maneuver_eta, ptr__);
+      if (checkOptBit(6)) ptr__ += IMC::serialize(control_loops, ptr__);
+      if (checkOptBit(7)) ptr__ += IMC::serialize(flags, ptr__);
+      if (checkOptBit(8)) ptr__ += IMC::serialize(last_error, ptr__);
+      if (checkOptBit(9)) ptr__ += IMC::serialize(last_error_time, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    VehicleState::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(op_mode, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(error_count, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(error_ents, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(maneuver_type, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(maneuver_stime, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(maneuver_eta, bfr__, size__);
+      if (checkOptBit(6)) bfr__ += IMC::deserialize(control_loops, bfr__, size__);
+      if (checkOptBit(7)) bfr__ += IMC::deserialize(flags, bfr__, size__);
+      if (checkOptBit(8)) bfr__ += IMC::deserialize(last_error, bfr__, size__);
+      if (checkOptBit(9)) bfr__ += IMC::deserialize(last_error_time, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -18678,6 +20173,7 @@ namespace DUNE
       orientation = 0;
       width = 0;
       length = 0;
+      opt_id = 1;
     }
 
     bool
@@ -18711,6 +20207,64 @@ namespace DUNE
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
       return true;
+    }
+
+    void
+    OperationalLimits::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (mask != 0) setOptBit(0);
+      if (max_depth != 0) setOptBit(1);
+      if (min_altitude != 0) setOptBit(2);
+      if (max_altitude != 0) setOptBit(3);
+      if (min_speed != 0) setOptBit(4);
+      if (max_speed != 0) setOptBit(5);
+      if (max_vrate != 0) setOptBit(6);
+      if (lat != 0) setOptBit(7);
+      if (lon != 0) setOptBit(8);
+      if (orientation != 0) setOptBit(9);
+      if (width != 0) setOptBit(10);
+      if (length != 0) setOptBit(11);
+    }
+
+    uint8_t*
+    OperationalLimits::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(mask, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(max_depth, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(min_altitude, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(max_altitude, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(min_speed, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(max_speed, ptr__);
+      if (checkOptBit(6)) ptr__ += IMC::serialize(max_vrate, ptr__);
+      if (checkOptBit(7)) ptr__ += IMC::serialize(lat, ptr__);
+      if (checkOptBit(8)) ptr__ += IMC::serialize(lon, ptr__);
+      if (checkOptBit(9)) ptr__ += IMC::serialize(orientation, ptr__);
+      if (checkOptBit(10)) ptr__ += IMC::serialize(width, ptr__);
+      if (checkOptBit(11)) ptr__ += IMC::serialize(length, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    OperationalLimits::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(mask, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(max_depth, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(min_altitude, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(max_altitude, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(min_speed, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(max_speed, bfr__, size__);
+      if (checkOptBit(6)) bfr__ += IMC::deserialize(max_vrate, bfr__, size__);
+      if (checkOptBit(7)) bfr__ += IMC::deserialize(lat, bfr__, size__);
+      if (checkOptBit(8)) bfr__ += IMC::deserialize(lon, bfr__, size__);
+      if (checkOptBit(9)) bfr__ += IMC::deserialize(orientation, bfr__, size__);
+      if (checkOptBit(10)) bfr__ += IMC::deserialize(width, bfr__, size__);
+      if (checkOptBit(11)) bfr__ += IMC::deserialize(length, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -20446,6 +22000,7 @@ namespace DUNE
       data.clear();
       start_actions.clear();
       end_actions.clear();
+      opt_id = 1;
     }
 
     bool
@@ -20463,6 +22018,52 @@ namespace DUNE
     PlanManeuver::validate(void) const
     {
       return true;
+    }
+
+    void
+    PlanManeuver::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (!maneuver_id.empty()) setOptBit(0);
+      if (!data.isNull())
+      {
+        setOptBit(1);
+        data.get()->updateOptVar();
+      }
+      if (!start_actions.empty())
+      {
+        setOptBit(2);
+        start_actions.updateOptVar();
+      }
+      if (!end_actions.empty())
+      {
+        setOptBit(3);
+        end_actions.updateOptVar();
+      }
+    }
+
+    uint8_t*
+    PlanManeuver::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(maneuver_id, ptr__);
+      if (checkOptBit(1)) ptr__ += data.serializeOptional(ptr__);
+      if (checkOptBit(2)) ptr__ += start_actions.serializeOptional(ptr__);
+      if (checkOptBit(3)) ptr__ += end_actions.serializeOptional(ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    PlanManeuver::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(maneuver_id, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += data.deserializeOptional(bfr__, size__);
+      if (checkOptBit(2)) bfr__ += start_actions.deserializeOptional(bfr__, size__);
+      if (checkOptBit(3)) bfr__ += end_actions.deserializeOptional(bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -20700,6 +22301,7 @@ namespace DUNE
       transitions.clear();
       start_actions.clear();
       end_actions.clear();
+      opt_id = 1;
     }
 
     bool
@@ -20722,6 +22324,75 @@ namespace DUNE
     PlanSpecification::validate(void) const
     {
       return true;
+    }
+
+    void
+    PlanSpecification::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (!plan_id.empty()) setOptBit(0);
+      if (!description.empty()) setOptBit(1);
+      if (!vnamespace.empty()) setOptBit(2);
+      if (!variables.empty())
+      {
+        setOptBit(3);
+        variables.updateOptVar();
+      }
+      if (!start_man_id.empty()) setOptBit(4);
+      if (!maneuvers.empty())
+      {
+        setOptBit(5);
+        maneuvers.updateOptVar();
+      }
+      if (!transitions.empty())
+      {
+        setOptBit(6);
+        transitions.updateOptVar();
+      }
+      if (!start_actions.empty())
+      {
+        setOptBit(7);
+        start_actions.updateOptVar();
+      }
+      if (!end_actions.empty())
+      {
+        setOptBit(8);
+        end_actions.updateOptVar();
+      }
+    }
+
+    uint8_t*
+    PlanSpecification::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(plan_id, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(description, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(vnamespace, ptr__);
+      if (checkOptBit(3)) ptr__ += variables.serializeOptional(ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(start_man_id, ptr__);
+      if (checkOptBit(5)) ptr__ += maneuvers.serializeOptional(ptr__);
+      if (checkOptBit(6)) ptr__ += transitions.serializeOptional(ptr__);
+      if (checkOptBit(7)) ptr__ += start_actions.serializeOptional(ptr__);
+      if (checkOptBit(8)) ptr__ += end_actions.serializeOptional(ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    PlanSpecification::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(plan_id, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(description, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(vnamespace, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += variables.deserializeOptional(bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(start_man_id, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += maneuvers.deserializeOptional(bfr__, size__);
+      if (checkOptBit(6)) bfr__ += transitions.deserializeOptional(bfr__, size__);
+      if (checkOptBit(7)) bfr__ += start_actions.deserializeOptional(bfr__, size__);
+      if (checkOptBit(8)) bfr__ += end_actions.deserializeOptional(bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -20976,6 +22647,7 @@ namespace DUNE
       state = 0;
       plan_id.clear();
       comm_level = 0;
+      opt_id = 1;
     }
 
     bool
@@ -20993,6 +22665,37 @@ namespace DUNE
     {
       if (comm_level > 100) return false;
       return true;
+    }
+
+    void
+    EmergencyControlState::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (state != 0) setOptBit(0);
+      if (!plan_id.empty()) setOptBit(1);
+      if (comm_level != 0) setOptBit(2);
+    }
+
+    uint8_t*
+    EmergencyControlState::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(state, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(plan_id, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(comm_level, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    EmergencyControlState::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(state, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(plan_id, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(comm_level, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -21049,6 +22752,7 @@ namespace DUNE
       plan_id.clear();
       arg.clear();
       info.clear();
+      opt_id = 1;
     }
 
     bool
@@ -21068,6 +22772,50 @@ namespace DUNE
     PlanDB::validate(void) const
     {
       return true;
+    }
+
+    void
+    PlanDB::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (type != 0) setOptBit(0);
+      if (op != 0) setOptBit(1);
+      if (request_id != 0) setOptBit(2);
+      if (!plan_id.empty()) setOptBit(3);
+      if (!arg.isNull())
+      {
+        setOptBit(4);
+        arg.get()->updateOptVar();
+      }
+      if (!info.empty()) setOptBit(5);
+    }
+
+    uint8_t*
+    PlanDB::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(type, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(op, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(request_id, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(plan_id, ptr__);
+      if (checkOptBit(4)) ptr__ += arg.serializeOptional(ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(info, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    PlanDB::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(type, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(op, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(request_id, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(plan_id, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += arg.deserializeOptional(bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(info, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -21180,6 +22928,7 @@ namespace DUNE
       change_sid = 0;
       change_sname.clear();
       md5.clear();
+      opt_id = 1;
     }
 
     bool
@@ -21199,6 +22948,46 @@ namespace DUNE
     PlanDBInformation::validate(void) const
     {
       return true;
+    }
+
+    void
+    PlanDBInformation::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (!plan_id.empty()) setOptBit(0);
+      if (plan_size != 0) setOptBit(1);
+      if (change_time != 0) setOptBit(2);
+      if (change_sid != 0) setOptBit(3);
+      if (!change_sname.empty()) setOptBit(4);
+      if (!md5.empty()) setOptBit(5);
+    }
+
+    uint8_t*
+    PlanDBInformation::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(plan_id, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(plan_size, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(change_time, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(change_sid, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(change_sname, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(md5, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    PlanDBInformation::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(plan_id, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(plan_size, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(change_time, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(change_sid, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(change_sname, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(md5, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -21268,6 +23057,7 @@ namespace DUNE
       change_sname.clear();
       md5.clear();
       plans_info.clear();
+      opt_id = 1;
     }
 
     bool
@@ -21288,6 +23078,53 @@ namespace DUNE
     PlanDBState::validate(void) const
     {
       return true;
+    }
+
+    void
+    PlanDBState::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (plan_count != 0) setOptBit(0);
+      if (plan_size != 0) setOptBit(1);
+      if (change_time != 0) setOptBit(2);
+      if (change_sid != 0) setOptBit(3);
+      if (!change_sname.empty()) setOptBit(4);
+      if (!md5.empty()) setOptBit(5);
+      if (!plans_info.empty())
+      {
+        setOptBit(6);
+        plans_info.updateOptVar();
+      }
+    }
+
+    uint8_t*
+    PlanDBState::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(plan_count, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(plan_size, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(change_time, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(change_sid, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(change_sname, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(md5, ptr__);
+      if (checkOptBit(6)) ptr__ += plans_info.serializeOptional(ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    PlanDBState::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(plan_count, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(plan_size, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(change_time, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(change_sid, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(change_sname, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(md5, bfr__, size__);
+      if (checkOptBit(6)) bfr__ += plans_info.deserializeOptional(bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -21391,6 +23228,7 @@ namespace DUNE
       flags = 0;
       arg.clear();
       info.clear();
+      opt_id = 1;
     }
 
     bool
@@ -21411,6 +23249,53 @@ namespace DUNE
     PlanControl::validate(void) const
     {
       return true;
+    }
+
+    void
+    PlanControl::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (type != 0) setOptBit(0);
+      if (op != 0) setOptBit(1);
+      if (request_id != 0) setOptBit(2);
+      if (!plan_id.empty()) setOptBit(3);
+      if (flags != 0) setOptBit(4);
+      if (!arg.isNull())
+      {
+        setOptBit(5);
+        arg.get()->updateOptVar();
+      }
+      if (!info.empty()) setOptBit(6);
+    }
+
+    uint8_t*
+    PlanControl::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(type, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(op, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(request_id, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(plan_id, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(flags, ptr__);
+      if (checkOptBit(5)) ptr__ += arg.serializeOptional(ptr__);
+      if (checkOptBit(6)) ptr__ += IMC::serialize(info, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    PlanControl::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(type, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(op, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(request_id, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(plan_id, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(flags, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += arg.deserializeOptional(bfr__, size__);
+      if (checkOptBit(6)) bfr__ += IMC::deserialize(info, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -21529,6 +23414,7 @@ namespace DUNE
       man_type = 0;
       man_eta = 0;
       last_outcome = 0;
+      opt_id = 1;
     }
 
     bool
@@ -21550,6 +23436,52 @@ namespace DUNE
     PlanControlState::validate(void) const
     {
       return true;
+    }
+
+    void
+    PlanControlState::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (state != 0) setOptBit(0);
+      if (!plan_id.empty()) setOptBit(1);
+      if (plan_eta != 0) setOptBit(2);
+      if (plan_progress != 0) setOptBit(3);
+      if (!man_id.empty()) setOptBit(4);
+      if (man_type != 0) setOptBit(5);
+      if (man_eta != 0) setOptBit(6);
+      if (last_outcome != 0) setOptBit(7);
+    }
+
+    uint8_t*
+    PlanControlState::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(state, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(plan_id, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(plan_eta, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(plan_progress, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(man_id, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(man_type, ptr__);
+      if (checkOptBit(6)) ptr__ += IMC::serialize(man_eta, ptr__);
+      if (checkOptBit(7)) ptr__ += IMC::serialize(last_outcome, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    PlanControlState::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(state, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(plan_id, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(plan_eta, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(plan_progress, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(man_id, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(man_type, bfr__, size__);
+      if (checkOptBit(6)) bfr__ += IMC::deserialize(man_eta, bfr__, size__);
+      if (checkOptBit(7)) bfr__ += IMC::deserialize(last_outcome, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -21623,6 +23555,7 @@ namespace DUNE
       op = 0;
       plan_id.clear();
       params.clear();
+      opt_id = 1;
     }
 
     bool
@@ -21640,6 +23573,40 @@ namespace DUNE
     PlanGeneration::validate(void) const
     {
       return true;
+    }
+
+    void
+    PlanGeneration::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (cmd != 0) setOptBit(0);
+      if (op != 0) setOptBit(1);
+      if (!plan_id.empty()) setOptBit(2);
+      if (!params.empty()) setOptBit(3);
+    }
+
+    uint8_t*
+    PlanGeneration::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(cmd, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(op, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(plan_id, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(params, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    PlanGeneration::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(cmd, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(op, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(plan_id, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(params, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -21878,6 +23845,7 @@ namespace DUNE
       distances.clear();
       actions.clear();
       fuel.clear();
+      opt_id = 1;
     }
 
     bool
@@ -21898,6 +23866,49 @@ namespace DUNE
     PlanStatistics::validate(void) const
     {
       return true;
+    }
+
+    void
+    PlanStatistics::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (!plan_id.empty()) setOptBit(0);
+      if (type != 0) setOptBit(1);
+      if (properties != 0) setOptBit(2);
+      if (!durations.empty()) setOptBit(3);
+      if (!distances.empty()) setOptBit(4);
+      if (!actions.empty()) setOptBit(5);
+      if (!fuel.empty()) setOptBit(6);
+    }
+
+    uint8_t*
+    PlanStatistics::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(plan_id, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(type, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(properties, ptr__);
+      if (checkOptBit(3)) ptr__ += IMC::serialize(durations, ptr__);
+      if (checkOptBit(4)) ptr__ += IMC::serialize(distances, ptr__);
+      if (checkOptBit(5)) ptr__ += IMC::serialize(actions, ptr__);
+      if (checkOptBit(6)) ptr__ += IMC::serialize(fuel, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    PlanStatistics::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(plan_id, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(type, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(properties, bfr__, size__);
+      if (checkOptBit(3)) bfr__ += IMC::deserialize(durations, bfr__, size__);
+      if (checkOptBit(4)) bfr__ += IMC::deserialize(distances, bfr__, size__);
+      if (checkOptBit(5)) bfr__ += IMC::deserialize(actions, bfr__, size__);
+      if (checkOptBit(6)) bfr__ += IMC::deserialize(fuel, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -23536,6 +25547,7 @@ namespace DUNE
     {
       name.clear();
       value.clear();
+      opt_id = 1;
     }
 
     bool
@@ -23551,6 +25563,34 @@ namespace DUNE
     EntityParameter::validate(void) const
     {
       return true;
+    }
+
+    void
+    EntityParameter::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (!name.empty()) setOptBit(0);
+      if (!value.empty()) setOptBit(1);
+    }
+
+    uint8_t*
+    EntityParameter::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(name, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(value, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    EntityParameter::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(name, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(value, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -23599,6 +25639,7 @@ namespace DUNE
     {
       name.clear();
       params.clear();
+      opt_id = 1;
     }
 
     bool
@@ -23614,6 +25655,38 @@ namespace DUNE
     EntityParameters::validate(void) const
     {
       return true;
+    }
+
+    void
+    EntityParameters::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (!name.empty()) setOptBit(0);
+      if (!params.empty())
+      {
+        setOptBit(1);
+        params.updateOptVar();
+      }
+    }
+
+    uint8_t*
+    EntityParameters::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(name, ptr__);
+      if (checkOptBit(1)) ptr__ += params.serializeOptional(ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    EntityParameters::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(name, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += params.deserializeOptional(bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -23692,6 +25765,7 @@ namespace DUNE
       name.clear();
       visibility.clear();
       scope.clear();
+      opt_id = 1;
     }
 
     bool
@@ -23708,6 +25782,37 @@ namespace DUNE
     QueryEntityParameters::validate(void) const
     {
       return true;
+    }
+
+    void
+    QueryEntityParameters::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (!name.empty()) setOptBit(0);
+      if (!visibility.empty()) setOptBit(1);
+      if (!scope.empty()) setOptBit(2);
+    }
+
+    uint8_t*
+    QueryEntityParameters::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(name, ptr__);
+      if (checkOptBit(1)) ptr__ += IMC::serialize(visibility, ptr__);
+      if (checkOptBit(2)) ptr__ += IMC::serialize(scope, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    QueryEntityParameters::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(name, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += IMC::deserialize(visibility, bfr__, size__);
+      if (checkOptBit(2)) bfr__ += IMC::deserialize(scope, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -23760,6 +25865,7 @@ namespace DUNE
     {
       name.clear();
       params.clear();
+      opt_id = 1;
     }
 
     bool
@@ -23775,6 +25881,38 @@ namespace DUNE
     SetEntityParameters::validate(void) const
     {
       return true;
+    }
+
+    void
+    SetEntityParameters::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (!name.empty()) setOptBit(0);
+      if (!params.empty())
+      {
+        setOptBit(1);
+        params.updateOptVar();
+      }
+    }
+
+    uint8_t*
+    SetEntityParameters::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(name, ptr__);
+      if (checkOptBit(1)) ptr__ += params.serializeOptional(ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    SetEntityParameters::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(name, bfr__, size__);
+      if (checkOptBit(1)) bfr__ += params.deserializeOptional(bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*
@@ -23851,6 +25989,7 @@ namespace DUNE
     SaveEntityParameters::clear(void)
     {
       name.clear();
+      opt_id = 1;
     }
 
     bool
@@ -23865,6 +26004,31 @@ namespace DUNE
     SaveEntityParameters::validate(void) const
     {
       return true;
+    }
+
+    void
+    SaveEntityParameters::updateOptVar(void)
+    {
+      opt_id = 0;
+      if (!name.empty()) setOptBit(0);
+    }
+
+    uint8_t*
+    SaveEntityParameters::serializeFieldsOptional(uint8_t* bfr__)
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(opt_id, ptr__);
+      if (checkOptBit(0)) ptr__ += IMC::serialize(name, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    SaveEntityParameters::deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(opt_id, bfr__, size__);
+      if (checkOptBit(0)) bfr__ += IMC::deserialize(name, bfr__, size__);
+      return bfr__ - start__;
     }
 
     uint8_t*

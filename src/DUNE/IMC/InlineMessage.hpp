@@ -148,6 +148,12 @@ namespace DUNE
         return m_msg->getPayloadSerializationSize() + 2;
       }
 
+      void 
+      updateOptVar(void)
+      {
+        m_msg->updateOptVar();
+      }
+
       bool
       isNull(void) const
       {
@@ -213,6 +219,22 @@ namespace DUNE
       }
 
       uint16_t
+      serializeOptional(uint8_t* bfr) const
+      {
+        if (m_msg == NULL)
+        {
+          bfr += IMC::serialize((uint16_t)DUNE_IMC_CONST_NULL_ID, bfr);
+        }
+        else
+        {
+          bfr += IMC::serialize(m_msg->getId(), bfr);
+          m_msg->serializeFieldsOptional(bfr);
+        }
+
+        return getSerializationSize();
+      }
+
+      uint16_t
       deserialize(const uint8_t* bfr, uint16_t& bfr_len)
       {
         uint16_t id = 0;
@@ -227,6 +249,27 @@ namespace DUNE
           throw InvalidMessageId(id);
 
         uint16_t ssize = m->deserializeFields(bfr + 2, bfr_len - 2);
+        replace(m);
+
+        bfr_len -= (ssize + 2);
+        return (ssize + 2);
+      }
+
+      uint16_t
+      deserializeOptional(const uint8_t* bfr, uint16_t& bfr_len)
+      {
+        uint16_t id = 0;
+        std::memcpy(&id, bfr, 2);
+
+        if (id == DUNE_IMC_CONST_NULL_ID)
+          return 2;
+
+        Type* m = static_cast<Type*>(Factory::produce(id));
+
+        if (m == 0)
+          throw InvalidMessageId(id);
+
+        uint16_t ssize = m->deserializeFieldsOptional(bfr + 2, bfr_len - 2);
         replace(m);
 
         bfr_len -= (ssize + 2);

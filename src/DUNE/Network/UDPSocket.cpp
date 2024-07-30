@@ -192,18 +192,18 @@ namespace DUNE
       sockaddr_in host;
       socklen_t sock_len = sizeof(host);
       std::memset((char*)&host, 0, sock_len);
-
       int rv = recvfrom(m_handle, (char*)buffer, size, 0, (::sockaddr*)&host, (::socklen_t*)&sock_len);
 
-      if (rv <= 0)
+      if (rv <= 0){
         throw NetworkError(DTR("error receiving data"), DUNE_SOCKET_ERROR);
-
+      }
+        
       if (addr != NULL)
         *addr = (::sockaddr*)&host;
 
       if (port != NULL)
         *port = Utils::ByteCopy::fromBE(host.sin_port);
-
+        
       return rv;
     }
 

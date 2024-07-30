@@ -91,15 +91,17 @@ class Message:
         self._root = root
         self._node = node
         self._consts = consts
+        self.optional = False 
         self.optVar = []
-        self.optional = False
-        for index, field in enumerate(node.findall('field')):
 
-            if (field.get('optional')):
-                
-                self.optional = True
+        for index, field in enumerate(msg.findall('field')):
+
+            if (field.get('optional')):  
+
+                self.optional = "True"                
                 self.optVar.append(index)
-        
+
+
         public = []
         protected = []
 
@@ -125,9 +127,9 @@ class Message:
 
         # clear()
         f = Function('clear', 'void')
-        if node.get('optional'):
-            f.add_body('opt_id = 0;')
         f.add_body('\n'.join([get_clear(field) for field in node.findall('field')]))
+        if (self.optional):
+            f.add_body('opt_id = 1;')
         public.append(f)
 
         # fieldsEqual()
@@ -154,7 +156,8 @@ class Message:
         f.add_body('return true;')
         public.append(f)
 
-        # Optional functions to be used for optional variable functionality
+        # Optional Variable Functions
+                # Optional functions to be used for optional variable functionality
         if (self.optional):
              # checkOptbit
             f = Function('checkOptBit', 'bool', [Var('bitPosition', 'uint32_t')], const = True, inline = True)
@@ -166,7 +169,7 @@ class Message:
             public.append(f)
             # UpdateOptVar
             # In the case the opt_id variable exists we will save the index of said variable
-            f = Function('updateOptVar', 'void', const = False, inline = True)
+            f = Function('updateOptVar', 'void', const = False, inline = False)
             f.add_body('opt_id = 0;')
             for index, field in enumerate(node.findall('field')):
                 # Here we will need to know which variables we are going to have to check
@@ -177,22 +180,30 @@ class Message:
                         f.add_body('if ({} != {}) setOptBit({});'.format(get_name(field),
                                                                 field.get('preset').strip(), index))
                     elif field.get('type') == 'message':
-                        f.add_body('if (!{}.isNull()) setOptBit({});'.format(get_name(field), index))
+                        f.add_body('if (!{}.isNull())'.format(get_name(field)))
+                        f.add_body("{")
+                        f.add_body("setOptBit({});".format(index))
+                        f.add_body('{}.get()->updateOptVar();'.format(get_name(field)))
+                        f.add_body('}')
                     elif field.get('type') == 'message-list':
-                        f.add_body('if (!{}.empty()) setOptBit({});'.format(get_name(field), index))
+                        f.add_body('if (!{}.empty())'.format(get_name(field)))
+                        f.add_body('{')
+                        f.add_body("setOptBit({});".format(index))
+                        f.add_body("{}.updateOptVar();".format(get_name(field)))
+                        f.add_body("}")
                     else:
                         f.add_body('if ({} != 0) setOptBit({});'.format(get_name(field), index))
             public.append(f)
 
         # serializeFieldsOptional()
         if (self.optional):
-            f = Function('serializeFields', 'uint8_t*', [Var('bfr__', 'uint8_t*')], const = True)
+            f = Function('serializeFieldsOptional', 'uint8_t*', [Var('bfr__', 'uint8_t*')], const = False)
             f.add_body('uint8_t* ptr__ = bfr__;')
             # If add the optional identifier exists then serialize the optional id variable 
             f.add_body('ptr__ += IMC::serialize(opt_id, ptr__);')
             for index, field in enumerate(node.findall('field')):
                 if field.get('type').startswith('message'):
-                    f.add_body('if (checkOptBit({})) ptr__ += {}.serialize(ptr__);'.format(index, get_name(field)))
+                    f.add_body('if (checkOptBit({})) ptr__ += {}.serializeOptional(ptr__);'.format(index, get_name(field)))
                 elif index in self.optVar:
                     f.add_body('if (checkOptBit({})) ptr__ += IMC::serialize({}, ptr__);'
                                                         .format(index, get_name(field)) )
@@ -201,63 +212,61 @@ class Message:
 
             f.add_body('return ptr__;')
             public.append(f)
-        else:
-            # serializeFields()
-            f = Function('serializeFields', 'uint8_t*', [Var('bfr__', 'uint8_t*')], const = True)
-            if self.has_fields():
-                f.add_body('uint8_t* ptr__ = bfr__;')
-                for field in node.findall('field'):
-                    if field.get('type').startswith('message'):
-                        f.add_body('ptr__ += %s.serialize(ptr__);' % get_name(field))
-                    else:
-                        f.add_body('ptr__ += IMC::serialize(%s, ptr__);' % get_name(field))
-                f.add_body('return ptr__;')
-            else:
-                f.add_body('return bfr__;')
-            public.append(f)
 
         # deserializeFieldsOptional()
         if(self.optional):
-            f = Function('deserializeFields', 'uint16_t', [Var('bfr__', 'const uint8_t*'), Var('size__', 'uint16_t')])
+            f = Function('deserializeFieldsOptional', 'uint16_t', [Var('bfr__', 'const uint8_t*'), Var('size__', 'uint16_t')])
             f.add_body('const uint8_t* start__ = bfr__;')
             f.add_body('bfr__ += IMC::deserialize(opt_id, bfr__, size__);')
             for index,field in enumerate(node.findall('field')):
                 if field.get('type').startswith('message'):
-                    f.add_body('if (checkOptBit({})) bfr__ += {}.deserialize(bfr__, size__);'.format(index, get_name(field)))
+                    f.add_body('if (checkOptBit({})) bfr__ += {}.deserializeOptional(bfr__, size__);'.format(index, get_name(field)))
                 elif index in self.optVar:
                     f.add_body('if (checkOptBit({})) bfr__ += IMC::deserialize({}, bfr__, size__);'
                                         .format(index, get_name(field)) )
                 else:
                     f.add_body('bfr__ += IMC::deserialize(%s, bfr__, size__);' % get_name(field))
             f.add_body('return bfr__ - start__;')
-            public.append(f)
+            public.append(f)        
 
-        else: 
-            # deserializeFields()
-            f = Function('deserializeFields', 'uint16_t', [Var('bfr__', 'const uint8_t*'), Var('size__', 'uint16_t')])
-            if self.has_fields():
-                f.add_body('const uint8_t* start__ = bfr__;')
-                for field in node.findall('field'):
-                    if field.get('type').startswith('message'):
-                        f.add_body('bfr__ += %s.deserialize(bfr__, size__);' % get_name(field))
-                    else:
-                        f.add_body('bfr__ += IMC::deserialize(%s, bfr__, size__);' % get_name(field))
-                f.add_body('return bfr__ - start__;')
+        # serializeFields()
+        f = Function('serializeFields', 'uint8_t*', [Var('bfr__', 'uint8_t*')], const = True)
+        if self.has_fields():
+            f.add_body('uint8_t* ptr__ = bfr__;')
+            for field in node.findall('field'):
+                if field.get('type').startswith('message'):
+                    f.add_body('ptr__ += %s.serialize(ptr__);' % get_name(field))
+                else:
+                    f.add_body('ptr__ += IMC::serialize(%s, ptr__);' % get_name(field))
+            f.add_body('return ptr__;')
+        else:
+            f.add_body('return bfr__;')
+        public.append(f)
 
-            else:
-                f.add_body('(void)bfr__;\n(void)size__;')
-                f.add_body('return 0;')
-            public.append(f)
+        # deserializeFields()
+        f = Function('deserializeFields', 'uint16_t', [Var('bfr__', 'const uint8_t*'), Var('size__', 'uint16_t')])
+        if self.has_fields():
+            f.add_body('const uint8_t* start__ = bfr__;')
+            for field in node.findall('field'):
+                if field.get('type').startswith('message'):
+                    f.add_body('bfr__ += %s.deserialize(bfr__, size__);' % get_name(field))
+                else:
+                    f.add_body('bfr__ += IMC::deserialize(%s, bfr__, size__);' % get_name(field))
+            f.add_body('return bfr__ - start__;')
+        else:
+            f.add_body('(void)bfr__;\n(void)size__;')
+            f.add_body('return 0;')
+        public.append(f)
 
         # reverseDeserializeFields()
         f = Function('reverseDeserializeFields', 'uint16_t', [Var('bfr__', 'const uint8_t*'), Var('size__', 'uint16_t')])
         if self.has_fields():
             f.add_body('const uint8_t* start__ = bfr__;')
             for field in node.findall('field'):
-                if field.get('type').startswith('message'):
-                    f.add_body('bfr__ += %s.reverseDeserialize(bfr__, size__);' % get_name(field))
-                elif consts['sizes'][field.get('type')] == 1:
+                if consts['sizes'][field.get('type')] == 1:
                     f.add_body('bfr__ += IMC::deserialize({0}, bfr__, size__);'.format(get_name(field)))
+                elif field.get('type').startswith('message'):
+                    f.add_body('bfr__ += %s.reverseDeserialize(bfr__, size__);' % get_name(field))
                 else:
                     f.add_body('bfr__ += IMC::reverseDeserialize(%s, bfr__, size__);' % get_name(field))
             f.add_body('return bfr__ - start__;')
@@ -377,11 +386,10 @@ class Message:
             hpp.append(v.as_decl())
 
         for f in node.findall('field'):
+            type = f.get('message-type')
             v = Var(get_name(f), get_cxx_type(f), desc = f.get('name'))
             hpp.append(v.as_decl())
-
         hpp.append('')
-
 
         for function in public:
             if function.is_inline():
@@ -460,6 +468,11 @@ class Message:
                     else:
                         size.append("checkOptBit({})*{}".format(index, 
                                                 self._consts['sizes'][field.get('type')]))
+                else: 
+                    if type == 'plaintext' or type == 'rawdata':
+                        size.append('IMC::getSerializationSize(%s)' % abbrev)
+                    elif type == 'message' or type == 'message-list':
+                        size.append(abbrev + '.getSerializationSize()')
         else:  
 
             for field in self._node.findall('field'):

@@ -258,6 +258,34 @@ namespace DUNE
         return getSerializationSize();
       }
 
+      //! Serialize optional instance.
+      //! @param[in] bfr buffer.
+      //! @return amount of bytes used.
+      uint16_t
+      serializeOptional(uint8_t* bfr) const
+      {
+        // Serialize number count.
+        uint16_t nmsgs = m_list.size();
+        bfr += IMC::serialize(nmsgs, bfr);
+
+        // Serialize messages.
+        for (unsigned i = 0; i < m_list.size(); ++i)
+        {
+          if (m_list[i] == NULL)
+          {
+            bfr += IMC::serialize((uint16_t)DUNE_IMC_CONST_NULL_ID, bfr);
+          }
+          else
+          {
+            bfr += IMC::serialize(m_list[i]->getId(), bfr);
+            bfr = m_list[i]->serializeFieldsOptional(bfr);
+          }
+        }
+
+        return getSerializationSize();
+      }
+
+
       //! Deserialize message from byte buffer.
       //! @param[in] bfr buffer.
       //! @param[in] bfr_len buffer size.
@@ -291,6 +319,48 @@ namespace DUNE
             throw InvalidMessageId(id);
 
           uint16_t ssize = msg->deserializeFields(ptr, bfr_len - (ptr - bfr));
+          m_list.push_back(msg);
+          ptr += ssize;
+        }
+
+        bfr_len -= ptr - bfr;
+        return ptr - bfr;
+      }
+
+
+      //! Deserialize message from byte buffer.
+      //! @param[in] bfr buffer.
+      //! @param[in] bfr_len buffer size.
+      //! @return amount of deserialized bytes.
+      uint16_t
+      deserializeOptional(const uint8_t* bfr, uint16_t& bfr_len)
+      {
+        const uint8_t* ptr = bfr;
+
+        // Deserialize message count.
+        uint16_t message_count = 0;
+        std::memcpy(&message_count, ptr, 2);
+        ptr += 2;
+
+        // Deserialize messages.
+        for (uint16_t i = 0; i < message_count; ++i)
+        {
+          uint16_t id = 0;
+          std::memcpy(&id, ptr, 2);
+          ptr += 2;
+
+          if (id == DUNE_IMC_CONST_NULL_ID)
+          {
+            m_list.push_back(NULL);
+            continue;
+          }
+
+          Type* msg = static_cast<Type*>(Factory::produce(id));
+
+          if (msg == NULL)
+            throw InvalidMessageId(id);
+
+          uint16_t ssize = msg->deserializeFieldsOptional(ptr, bfr_len - (ptr - bfr));
           m_list.push_back(msg);
           ptr += ssize;
         }
@@ -426,6 +496,16 @@ namespace DUNE
         {
           if (m_list[i] != NULL)
             m_list[i]->setDestinationEntity(value);
+        }
+      }
+      
+      void 
+      updateOptVar(void)
+      {
+        for (unsigned int i = 0; i < m_list.size(); ++i)
+        {
+          if(m_list[i] != NULL)
+            m_list[i]->updateOptVar();
         }
       }
 

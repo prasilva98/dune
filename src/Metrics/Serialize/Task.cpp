@@ -174,7 +174,7 @@ namespace Metrics
       {
         // Increment accumulated size
         m_msize += msg_d->getSerializationSize();
-        inf("Message name is: %s and size is: %d", msg_d->getName(), m_msize);
+        //inf("Message name is: %s and size is: %d", msg_d->getName(), m_msize);
             
         // If the name doesn't exist add it sx
         if (m_map.count(name) == 0) 
@@ -227,13 +227,29 @@ namespace Metrics
               Utils::ByteBuffer bfr; 
               IMC::Message* msg_d = IMC::Packet::deserialize(buf, n);
               std::string name = msg_d->getName();
+
               //! Check if received message is part of the Transports.Message pack 
               //! If so then get the accumulated size we also save it 
               if(isStringInVector(m_args.messages, name))
               {
-                // After this, we need to get the message deserialize again and serialize it...
+                if(name == "PlanDB")
+                {
+                  // Optional Serialization
+                  IMC::Packet::serializeOptional(msg_d, bfr);
+                  IMC::Message* msg_d = IMC::Packet::deserializeOptional(bfr.getBuffer(), bfr.getSize());
 
-                OriginalSerialize(msg_d, name);
+                  msg_d->updateOptVar();
+                  auto plan = static_cast<IMC::PlanDB*>(msg_d);
+
+                  inf("Og Size is: %d", n);
+                  inf("NEW SIZE IS: %d", msg_d->getSerializationSize());
+                  inf("OPTIONAL CONTENTS: optional ID: %d info: %s", plan->opt_id, plan->info.c_str());
+
+                  m_msize += msg_d->getSerializationSize();
+
+                }
+
+                //OriginalSerialize(msg_d, name);
 
               }
               else
@@ -244,6 +260,7 @@ namespace Metrics
             }
             catch(const std::runtime_error& e)
             {
+
               spew("Error ocurred when deserializing: %s",e.what());
             }
         }
@@ -306,6 +323,8 @@ namespace Metrics
 
           if (now - m_last_pkt_time >= m_args.timeout)
           {
+
+            inf("Optional Size: %d", m_msize);
             saveMetrics();
             setEntityState(IMC::EntityState::ESTA_ERROR, Status::CODE_MISSING_DATA);
             requestDeactivation();
