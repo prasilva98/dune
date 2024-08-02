@@ -37,7 +37,7 @@ from imc.deps import *
 # This file takes your IMC message-types and sets all to optional
 ### 
 
-message_types = [
+message_types_pre = [
   "CpuUsage", "Current", "DesiredHeading", "DesiredZ", "DevCalibrationControl", "DevCalibrationState",
   "Distance", "EmergencyControlState", "EntityActivationState", "EntityList", "EntityParameters","EntityState",
   "EstimatedState", "FollowRefState", "FuelLevel","GpsFix","GpsFixRejection","Heartbeat",
@@ -69,6 +69,94 @@ message_types = [
                                           "VehicleState",
                                           "Voltage"]
 
+
+message_types = [ "AcousticOperation",
+                                          "AcousticRequest",
+                                          "AcousticStatus",
+                                          "AcousticSystems",
+                                          "AlignmentState",
+                                          "CpuUsage",
+                                          "DevCalibrationControl",
+                                          "DevCalibrationState",
+                                          "Distance",
+                                          "EntityList",
+                                          "EntityParameters",
+                                          "EntityParameter",
+                                          "EntityState",
+                                          "EstimatedState",
+                                          "FollowRefState",
+                                          "FuelLevel",
+                                          "Heartbeat",
+                                          "IridiumMsgRx",
+                                          "IridiumMsgTx",
+                                          "IridiumTxStatus",
+                                          "LblEstimate",
+                                          "LblRangeAcceptance",
+                                          "LblConfig",
+                                          "LogBookEntry",
+                                          "LogBookControl",
+                                          "ManeuverDone",
+                                          "OperationalLimits",
+                                          "PathControlState",
+                                          "PlanControl",
+                                          "PlanStatistics",
+                                          "PlanControlState",
+                                          "PlanDB",
+                                          "PlanDBState",
+                                          "PlanDBInformation",
+                                          "PlanGeneration",
+                                          "PowerChannelState",
+                                          "ReportControl",
+                                          "RemoteActions",
+                                          "RemoteActionsRequest",
+                                          "Rpm",
+                                          "RSSI",
+                                          "SadcReadings",
+                                          "Salinity",
+                                          "SimulatedState",
+                                          "SmsRequest",
+                                          "SmsStatus",
+                                          "SoiCommand",
+                                          "SoiState",
+                                          "SonarData",
+                                          "StateReport",
+                                          "StorageUsage",
+                                          "TCPRequest",
+                                          "TCPStatus",
+                                          "Temperature",
+                                          "TextMessage",
+                                          "TransmissionRequest",
+                                          "TransmissionStatus",
+                                          "TrexObservation",
+                                          "TrexOperation",
+                                          "TrexToken",
+                                          "TrexPlan",
+                                          "Turbidity",
+                                          "UamTxFrame",
+                                          "UamRxFrame",
+                                          "UamTxStatus",
+                                          "UamRxRange",
+                                          "UsblAnglesExtended",
+                                          "UsblPositionExtended",
+                                          "UsblFixExtended",
+                                          "UsblModem",
+                                          "UsblConfig",
+                                          "VehicleMedium",
+                                          "VehicleState",
+                                          "Voltage",
+                                          "DeviceState",
+                                          "BeamConfig"]
+
+message_types = ["PlanControl",
+                "PlanControlState",
+                "EstimatedState",
+                "VehicleState",
+                "StateReport",
+                "FuelLevel",
+                "PlanStatistics",
+                "Aborted"
+]
+
 # Parse command line arguments.
 import argparse
 parser = argparse.ArgumentParser(
@@ -90,7 +178,9 @@ nested_message_types = []
 
 for abbrev in message_types:
     msg = root.find("message[@abbrev='%s']" % abbrev)
-    # First I have to check if the fields are nested message    
+    # First I have to check if the fields are nested message   
+    print(abbrev) 
+
     for field in msg.findall('field'):
         if field.get('message-type'):
             print("Nested message type: {}".format(field.get('message-type')))
@@ -98,8 +188,11 @@ for abbrev in message_types:
 
 message_types.extend(nested_message_types)
 
+print(message_types)
+
 for messages in message_types:
     msg = root.find("message[@abbrev='%s']" % messages)
+
     for field in msg.findall('field'):
         print(field.get('name'))
         field.set('optional', 'True')
