@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 06bab9b4b83172a64c5df69c4c3b9286                            *
+// IMC XML MD5: 916a50fb0c043c78b2f7df1fca02b6e5                            *
 //***************************************************************************
 
 #ifndef DUNE_IMC_DEFINITIONS_HPP_INCLUDED_
@@ -79,8 +79,6 @@ namespace DUNE
         EFLA_HUMAN_INTERVENTION = 0x01
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! State.
       uint8_t state;
       //! Flags.
@@ -111,27 +109,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -156,13 +133,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 2;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*1 + checkOptBit(1)*1 + IMC::getSerializationSize(description)*checkOptBit(2);
+        return IMC::getSerializationSize(description);
       }
 
       void
@@ -383,8 +360,6 @@ namespace DUNE
         OP_QUERY = 1
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! operation.
       uint8_t op;
       //! list.
@@ -412,27 +387,6 @@ namespace DUNE
 
       int
       validate(void) const;
-
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
 
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
@@ -464,7 +418,7 @@ namespace DUNE
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*1 + IMC::getSerializationSize(list)*checkOptBit(1);
+        return IMC::getSerializationSize(list);
       }
 
       void
@@ -475,8 +429,6 @@ namespace DUNE
     class CpuUsage: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Usage percentage.
       uint8_t value;
 
@@ -503,27 +455,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -549,12 +480,6 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*1;
       }
 
       fp64_t
@@ -723,8 +648,6 @@ namespace DUNE
         DCAL_STEP_PREVIOUS = 3
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Operation.
       uint8_t op;
 
@@ -750,27 +673,6 @@ namespace DUNE
 
       int
       validate(void) const;
-
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
 
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
@@ -799,12 +701,6 @@ namespace DUNE
         return 1;
       }
 
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*1;
-      }
-
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
@@ -828,8 +724,6 @@ namespace DUNE
         DCS_COMPLETED = 0x10
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Total Steps.
       uint8_t total_steps;
       //! Current Step Number.
@@ -862,27 +756,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -907,13 +780,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 3;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*1 + checkOptBit(1)*1 + IMC::getSerializationSize(step)*checkOptBit(2) + checkOptBit(3)*1;
+        return IMC::getSerializationSize(step);
       }
 
       void
@@ -945,8 +818,6 @@ namespace DUNE
         EAS_DEACT_FAIL = 7
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! State.
       uint8_t state;
       //! Error.
@@ -974,27 +845,6 @@ namespace DUNE
 
       int
       validate(void) const;
-
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
 
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
@@ -1026,7 +876,7 @@ namespace DUNE
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*1 + IMC::getSerializationSize(error)*checkOptBit(1);
+        return IMC::getSerializationSize(error);
       }
 
       void
@@ -1279,8 +1129,6 @@ namespace DUNE
     class SimulatedState: public Message
     {
     public:
-      //! Optional Identifier.
-      uint32_t opt_id;
       //! Latitude (WGS-84).
       fp64_t lat;
       //! Longitude (WGS-84).
@@ -1341,27 +1189,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -1386,13 +1213,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 4;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*8 + checkOptBit(1)*8 + checkOptBit(2)*4 + checkOptBit(3)*4 + checkOptBit(4)*4 + checkOptBit(5)*4 + checkOptBit(6)*4 + checkOptBit(7)*4 + checkOptBit(8)*4 + checkOptBit(9)*4 + checkOptBit(10)*4 + checkOptBit(11)*4 + checkOptBit(12)*4 + checkOptBit(13)*4 + checkOptBit(14)*4 + checkOptBit(15)*4 + checkOptBit(16)*4 + checkOptBit(17)*4;
+        return 80;
       }
 
       void
@@ -1639,8 +1460,6 @@ namespace DUNE
     class StorageUsage: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Available.
       uint32_t available;
       //! Usage.
@@ -1669,27 +1488,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -1714,13 +1512,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*4 + checkOptBit(1)*1;
+        return 5;
       }
 
       fp64_t
@@ -1940,8 +1732,6 @@ namespace DUNE
         LBET_DEBUG = 4
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Type.
       uint8_t type;
       //! Timestamp.
@@ -1974,27 +1764,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -2019,13 +1788,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 9;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*1 + checkOptBit(1)*8 + IMC::getSerializationSize(context) + IMC::getSerializationSize(text)*checkOptBit(3);
+        return IMC::getSerializationSize(context) + IMC::getSerializationSize(text);
       }
 
       void
@@ -2049,8 +1818,6 @@ namespace DUNE
         LBC_REPLY = 3
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Command.
       uint8_t command;
       //! Timestamp.
@@ -2081,27 +1848,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -2126,13 +1872,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 9;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*1 + checkOptBit(1)*8 + msg.getSerializationSize()*checkOptBit(2);
+        return msg.getSerializationSize();
       }
 
       void
@@ -3581,8 +3327,6 @@ namespace DUNE
     class IridiumMsgRx: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Origin Identifier.
       std::string origin;
       //! Timestamp.
@@ -3617,27 +3361,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -3662,13 +3385,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 24;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return IMC::getSerializationSize(origin)*checkOptBit(0) + checkOptBit(1)*8 + checkOptBit(2)*8 + checkOptBit(3)*8 + IMC::getSerializationSize(data)*checkOptBit(4);
+        return IMC::getSerializationSize(origin) + IMC::getSerializationSize(data);
       }
 
       void
@@ -3679,8 +3402,6 @@ namespace DUNE
     class IridiumMsgTx: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Request Identifier.
       uint16_t req_id;
       //! Time to live.
@@ -3713,27 +3434,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -3758,13 +3458,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 4;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*2 + checkOptBit(1)*2 + IMC::getSerializationSize(destination)*checkOptBit(2) + IMC::getSerializationSize(data)*checkOptBit(3);
+        return IMC::getSerializationSize(destination) + IMC::getSerializationSize(data);
       }
 
       void
@@ -3792,8 +3492,6 @@ namespace DUNE
         TXSTATUS_EMPTY = 6
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Request Identifier.
       uint16_t req_id;
       //! Status Code.
@@ -3824,27 +3522,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -3869,13 +3546,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 3;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*2 + checkOptBit(1)*1 + IMC::getSerializationSize(text)*checkOptBit(2);
+        return IMC::getSerializationSize(text);
       }
 
       void
@@ -4874,8 +4551,6 @@ namespace DUNE
     class LblRange: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Beacon Identification Number.
       uint8_t id;
       //! Range.
@@ -4904,27 +4579,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -4949,13 +4603,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*1 + checkOptBit(1)*4;
+        return 5;
       }
 
       uint16_t
@@ -4972,8 +4620,6 @@ namespace DUNE
     class LblBeacon: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Beacon Name.
       std::string beacon;
       //! Latitude WGS-84.
@@ -5012,27 +4658,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -5057,13 +4682,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 23;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return IMC::getSerializationSize(beacon)*checkOptBit(0) + checkOptBit(1)*8 + checkOptBit(2)*8 + checkOptBit(3)*4 + checkOptBit(4)*1 + checkOptBit(5)*1 + checkOptBit(6)*1;
+        return IMC::getSerializationSize(beacon);
       }
 
       void
@@ -5085,8 +4710,6 @@ namespace DUNE
         OP_CUR_CFG = 2
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Operation.
       uint8_t op;
       //! Beacons.
@@ -5114,27 +4737,6 @@ namespace DUNE
 
       int
       validate(void) const;
-
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
 
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
@@ -5166,7 +4768,7 @@ namespace DUNE
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*1 + beacons.getSerializationSize()*checkOptBit(1);
+        return beacons.getSerializationSize();
       }
 
       void
@@ -5996,8 +5598,6 @@ namespace DUNE
     class Rpm: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Value.
       int16_t value;
 
@@ -6024,27 +5624,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -6069,13 +5648,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*2;
+        return 2;
       }
 
       fp64_t
@@ -6092,8 +5665,6 @@ namespace DUNE
     class Voltage: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Measured Voltage Value.
       fp32_t value;
 
@@ -6120,27 +5691,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -6165,13 +5715,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*4;
+        return 4;
       }
 
       fp64_t
@@ -6188,8 +5732,6 @@ namespace DUNE
     class Current: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Measured Current Value.
       fp32_t value;
 
@@ -6216,27 +5758,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -6261,13 +5782,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*4;
+        return 4;
       }
 
       fp64_t
@@ -6322,8 +5837,6 @@ namespace DUNE
         GFV_VALID_VDOP = 0x0100
       };
 
-      //! Optional Identifier.
-      uint16_t opt_id;
       //! Validity.
       uint16_t validity;
       //! Type.
@@ -6380,27 +5893,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -6425,13 +5917,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 2;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*2 + checkOptBit(1)*1 + checkOptBit(2)*2 + checkOptBit(3)*1 + checkOptBit(4)*1 + checkOptBit(5)*4 + checkOptBit(6)*8 + checkOptBit(7)*8 + checkOptBit(8)*4 + checkOptBit(9)*1 + checkOptBit(10)*4 + checkOptBit(11)*4 + checkOptBit(12)*4 + checkOptBit(13)*4 + checkOptBit(14)*4 + checkOptBit(15)*4;
+        return 56;
       }
 
       void
@@ -7004,8 +6490,6 @@ namespace DUNE
     class DeviceState: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Device Position - X.
       fp32_t x;
       //! Device Position - Y.
@@ -7042,27 +6526,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -7087,13 +6550,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*4 + checkOptBit(1)*4 + checkOptBit(2)*4 + checkOptBit(3)*4 + checkOptBit(4)*4 + checkOptBit(5)*4;
+        return 24;
       }
 
       void
@@ -7104,8 +6561,6 @@ namespace DUNE
     class BeamConfig: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Beam Width.
       fp32_t beam_width;
       //! Beam Height.
@@ -7134,27 +6589,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -7179,13 +6613,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*4 + checkOptBit(1)*4;
+        return 8;
       }
 
       void
@@ -7205,8 +6633,6 @@ namespace DUNE
         DV_VALID = 1
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Validity.
       uint8_t validity;
       //! Location.
@@ -7239,27 +6665,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -7284,13 +6689,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 5;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*1 + location.getSerializationSize()*checkOptBit(1) + beam_config.getSerializationSize()*checkOptBit(2) + checkOptBit(3)*4;
+        return location.getSerializationSize() + beam_config.getSerializationSize();
       }
 
       fp64_t
@@ -7323,8 +6728,6 @@ namespace DUNE
     class Temperature: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Measured Temperature.
       fp32_t value;
 
@@ -7351,27 +6754,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -7396,13 +6778,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*4;
+        return 4;
       }
 
       fp64_t
@@ -8455,9 +7831,9 @@ namespace DUNE
       //! Optional Identifier.
       uint8_t opt_id;
       //! Value.
-      fp32_t value;
+      int8_t value;
       //! Confidence Level.
-      fp32_t confidence;
+      int8_t confidence;
       //! Operation Modes.
       std::string opmodes;
 
@@ -8535,7 +7911,7 @@ namespace DUNE
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*4 + checkOptBit(1)*4 + IMC::getSerializationSize(opmodes)*checkOptBit(2);
+        return checkOptBit(0)*1 + checkOptBit(1)*1 + IMC::getSerializationSize(opmodes)*checkOptBit(2);
       }
 
       fp64_t
@@ -10308,8 +9684,6 @@ namespace DUNE
         OP_QUERY = 1
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! operation.
       uint8_t op;
       //! Actions.
@@ -10337,27 +9711,6 @@ namespace DUNE
 
       int
       validate(void) const;
-
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
 
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
@@ -10389,7 +9742,7 @@ namespace DUNE
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*1 + IMC::getSerializationSize(actions)*checkOptBit(1);
+        return IMC::getSerializationSize(actions);
       }
 
       void
@@ -10400,8 +9753,6 @@ namespace DUNE
     class RemoteActions: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Actions.
       std::string actions;
 
@@ -10428,27 +9779,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -10473,13 +9803,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 0;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return IMC::getSerializationSize(actions)*checkOptBit(0);
+        return IMC::getSerializationSize(actions);
       }
 
       void
@@ -10881,8 +10211,6 @@ namespace DUNE
         PCS_ON = 1
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Name.
       std::string name;
       //! State.
@@ -10910,27 +10238,6 @@ namespace DUNE
 
       int
       validate(void) const;
-
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
 
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
@@ -10962,7 +10269,7 @@ namespace DUNE
       unsigned
       getVariableSerializationSize(void) const
       {
-        return IMC::getSerializationSize(name)*checkOptBit(0) + checkOptBit(1)*1;
+        return IMC::getSerializationSize(name);
       }
 
       void
@@ -11710,8 +11017,6 @@ namespace DUNE
         RR_LOST_VAL_BIT = 4
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! UTC Time of Fix.
       fp32_t utc_time;
       //! Reason.
@@ -11740,27 +11045,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -11785,13 +11069,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*4 + checkOptBit(1)*1;
+        return 5;
       }
 
       void
@@ -11817,8 +11095,6 @@ namespace DUNE
         RR_AT_SURFACE = 4
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Beacon Identification Number.
       uint8_t id;
       //! Range.
@@ -11849,27 +11125,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -11894,13 +11149,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*1 + checkOptBit(1)*4 + checkOptBit(2)*1;
+        return 6;
       }
 
       uint16_t
@@ -12012,8 +11261,6 @@ namespace DUNE
     class LblEstimate: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! LBL Beacon Configuration.
       InlineMessage<LblBeacon> beacon;
       //! North position.
@@ -12050,27 +11297,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -12095,13 +11321,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 20;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return beacon.getSerializationSize()*checkOptBit(0) + checkOptBit(1)*4 + checkOptBit(2)*4 + checkOptBit(3)*4 + checkOptBit(4)*4 + checkOptBit(5)*4;
+        return beacon.getSerializationSize();
       }
 
       void
@@ -12340,8 +11566,6 @@ namespace DUNE
     class DesiredHeading: public ControlCommand
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Value.
       fp64_t value;
 
@@ -12368,27 +11592,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -12413,13 +11616,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*8;
+        return 8;
       }
 
       fp64_t
@@ -12436,8 +11633,6 @@ namespace DUNE
     class DesiredZ: public ControlCommand
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Value.
       fp32_t value;
       //! Z Units.
@@ -12466,27 +11661,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -12511,13 +11685,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*4 + checkOptBit(1)*1;
+        return 5;
       }
 
       fp64_t
@@ -13172,8 +12340,6 @@ namespace DUNE
         FL_CCLOCKW = 0x10
       };
 
-      //! Optional Identifier.
-      uint32_t opt_id;
       //! Path Reference.
       uint32_t path_ref;
       //! Start Point -- Latitude WGS-84.
@@ -13236,27 +12402,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -13281,13 +12426,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 4;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*4 + checkOptBit(1)*8 + checkOptBit(2)*8 + checkOptBit(3)*4 + checkOptBit(4)*1 + checkOptBit(5)*8 + checkOptBit(6)*8 + checkOptBit(7)*4 + checkOptBit(8)*1 + checkOptBit(9)*4 + checkOptBit(10)*1 + checkOptBit(11)*4 + checkOptBit(12)*4 + checkOptBit(13)*4 + checkOptBit(14)*4 + checkOptBit(15)*4 + checkOptBit(16)*4 + checkOptBit(17)*4 + checkOptBit(18)*2;
+        return 81;
       }
 
       void
@@ -13951,8 +13090,6 @@ namespace DUNE
         LD_IWINDCURR = 3
       };
 
-      //! Optional Identifier.
-      uint16_t opt_id;
       //! Timeout.
       uint16_t timeout;
       //! Latitude WGS-84.
@@ -14005,27 +13142,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -14050,13 +13166,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 2;
+        return 48;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*2 + checkOptBit(1)*8 + checkOptBit(2)*8 + checkOptBit(3)*4 + checkOptBit(4)*1 + checkOptBit(5)*2 + checkOptBit(6)*4 + checkOptBit(7)*1 + checkOptBit(8)*1 + checkOptBit(9)*4 + checkOptBit(10)*4 + checkOptBit(11)*8 + checkOptBit(12)*1 + IMC::getSerializationSize(custom)*checkOptBit(13);
+        return IMC::getSerializationSize(custom);
       }
 
       void
@@ -16108,8 +15224,6 @@ namespace DUNE
         FLAG_MANDONE = 0x80
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Flags.
       uint8_t flags;
       //! Speed Reference.
@@ -16146,27 +15260,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -16191,13 +15284,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 21;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*1 + speed.getSerializationSize()*checkOptBit(1) + z.getSerializationSize()*checkOptBit(2) + checkOptBit(3)*8 + checkOptBit(4)*8 + checkOptBit(5)*4;
+        return speed.getSerializationSize() + z.getSerializationSize();
       }
 
       void
@@ -16256,8 +15349,6 @@ namespace DUNE
         PROX_Z_UNREACHABLE = 0x10
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Controlling Source.
       uint16_t control_src;
       //! Controlling Entity.
@@ -16292,27 +15383,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -16337,13 +15407,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 5;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*2 + checkOptBit(1)*1 + reference.getSerializationSize()*checkOptBit(2) + checkOptBit(3)*1 + checkOptBit(4)*1;
+        return reference.getSerializationSize();
       }
 
       void
@@ -18437,8 +17507,6 @@ namespace DUNE
     class OperationalLimits: public Message
     {
     public:
-      //! Optional Identifier.
-      uint16_t opt_id;
       //! Field Indicator Mask.
       uint8_t mask;
       //! Maximum Depth.
@@ -18487,27 +17555,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -18532,13 +17579,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 2;
-      }
-
-      unsigned
-      getVariableSerializationSize(void) const
-      {
-        return checkOptBit(0)*1 + checkOptBit(1)*4 + checkOptBit(2)*4 + checkOptBit(3)*4 + checkOptBit(4)*4 + checkOptBit(5)*4 + checkOptBit(6)*4 + checkOptBit(7)*8 + checkOptBit(8)*8 + checkOptBit(9)*4 + checkOptBit(10)*4 + checkOptBit(11)*4;
+        return 53;
       }
 
       void
@@ -19302,6 +18343,8 @@ namespace DUNE
     class StateReport: public Message
     {
     public:
+      //! Optional Identifier.
+      uint16_t opt_id;
       //! Time Stamp.
       uint32_t stime;
       //! Latitude.
@@ -19346,6 +18389,27 @@ namespace DUNE
       int
       validate(void) const;
 
+      bool
+      checkOptBit(uint32_t bitPosition) const
+      {
+        return opt_id & (1 << bitPosition);
+      }
+
+      void
+      setOptBit(uint32_t bitPosition)
+      {
+        opt_id |= (1 << bitPosition);
+      }
+
+      void
+      updateOptVar(void);
+
+      uint8_t*
+      serializeFieldsOptional(uint8_t* bfr__);
+
+      uint16_t
+      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
+
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -19370,7 +18434,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 24;
+        return 2;
+      }
+
+      unsigned
+      getVariableSerializationSize(void) const
+      {
+        return checkOptBit(0)*4 + checkOptBit(1)*4 + checkOptBit(2)*4 + checkOptBit(3)*2 + checkOptBit(4)*2 + checkOptBit(5)*2 + checkOptBit(6)*2 + checkOptBit(7)*1 + checkOptBit(8)*1 + checkOptBit(9)*2;
       }
 
       void
@@ -20352,8 +19422,6 @@ namespace DUNE
     class PlanManeuver: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Maneuver ID.
       std::string maneuver_id;
       //! Maneuver Specification.
@@ -20386,27 +19454,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -20431,13 +19478,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 0;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return IMC::getSerializationSize(maneuver_id)*checkOptBit(0) + data.getSerializationSize()*checkOptBit(1) + start_actions.getSerializationSize()*checkOptBit(2) + end_actions.getSerializationSize()*checkOptBit(3);
+        return IMC::getSerializationSize(maneuver_id) + data.getSerializationSize() + start_actions.getSerializationSize() + end_actions.getSerializationSize();
       }
 
       void
@@ -20553,8 +19600,6 @@ namespace DUNE
     class PlanSpecification: public Message
     {
     public:
-      //! Optional Identifier.
-      uint16_t opt_id;
       //! Plan ID.
       std::string plan_id;
       //! Plan Description.
@@ -20597,27 +19642,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -20642,13 +19666,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 2;
+        return 0;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return IMC::getSerializationSize(plan_id)*checkOptBit(0) + IMC::getSerializationSize(description)*checkOptBit(1) + IMC::getSerializationSize(vnamespace)*checkOptBit(2) + variables.getSerializationSize()*checkOptBit(3) + IMC::getSerializationSize(start_man_id)*checkOptBit(4) + maneuvers.getSerializationSize()*checkOptBit(5) + transitions.getSerializationSize()*checkOptBit(6) + start_actions.getSerializationSize()*checkOptBit(7) + end_actions.getSerializationSize()*checkOptBit(8);
+        return IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(description) + IMC::getSerializationSize(vnamespace) + variables.getSerializationSize() + IMC::getSerializationSize(start_man_id) + maneuvers.getSerializationSize() + transitions.getSerializationSize() + start_actions.getSerializationSize() + end_actions.getSerializationSize();
       }
 
       void
@@ -20794,8 +19818,6 @@ namespace DUNE
         ECS_STOPPING = 5
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! State.
       uint8_t state;
       //! Plan Id.
@@ -20826,27 +19848,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -20871,13 +19872,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 2;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*1 + IMC::getSerializationSize(plan_id)*checkOptBit(1) + checkOptBit(2)*1;
+        return IMC::getSerializationSize(plan_id);
       }
 
       void
@@ -20922,8 +19923,6 @@ namespace DUNE
         DBOP_BOOT = 7
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Type.
       uint8_t type;
       //! Operation.
@@ -20960,27 +19959,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -21005,13 +19983,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 4;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*1 + checkOptBit(1)*1 + checkOptBit(2)*2 + IMC::getSerializationSize(plan_id)*checkOptBit(3) + arg.getSerializationSize()*checkOptBit(4) + IMC::getSerializationSize(info)*checkOptBit(5);
+        return IMC::getSerializationSize(plan_id) + arg.getSerializationSize() + IMC::getSerializationSize(info);
       }
 
       void
@@ -21038,8 +20016,6 @@ namespace DUNE
     class PlanDBInformation: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Plan ID.
       std::string plan_id;
       //! Plan Size.
@@ -21076,27 +20052,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -21121,13 +20076,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 12;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return IMC::getSerializationSize(plan_id)*checkOptBit(0) + checkOptBit(1)*2 + checkOptBit(2)*8 + checkOptBit(3)*2 + IMC::getSerializationSize(change_sname)*checkOptBit(4) + IMC::getSerializationSize(md5)*checkOptBit(5);
+        return IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(change_sname) + IMC::getSerializationSize(md5);
       }
 
       void
@@ -21138,8 +20093,6 @@ namespace DUNE
     class PlanDBState: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Plan -- Count.
       uint16_t plan_count;
       //! Plan -- Size of all plans.
@@ -21178,27 +20131,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -21223,13 +20155,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 16;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*2 + checkOptBit(1)*4 + checkOptBit(2)*8 + checkOptBit(3)*2 + IMC::getSerializationSize(change_sname)*checkOptBit(4) + IMC::getSerializationSize(md5)*checkOptBit(5) + plans_info.getSerializationSize()*checkOptBit(6);
+        return IMC::getSerializationSize(change_sname) + IMC::getSerializationSize(md5) + plans_info.getSerializationSize();
       }
 
       void
@@ -21557,8 +20489,6 @@ namespace DUNE
         OP_SUCCESS = 2
       };
 
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Command.
       uint8_t cmd;
       //! Operation.
@@ -21591,27 +20521,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -21636,13 +20545,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 2;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return checkOptBit(0)*1 + checkOptBit(1)*1 + IMC::getSerializationSize(plan_id)*checkOptBit(2) + IMC::getSerializationSize(params)*checkOptBit(3);
+        return IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(params);
       }
 
       void
@@ -23405,8 +22314,6 @@ namespace DUNE
     class EntityParameter: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Name.
       std::string name;
       //! Value.
@@ -23435,27 +22342,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -23480,13 +22366,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 0;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return IMC::getSerializationSize(name)*checkOptBit(0) + IMC::getSerializationSize(value)*checkOptBit(1);
+        return IMC::getSerializationSize(name) + IMC::getSerializationSize(value);
       }
 
       void
@@ -23497,8 +22383,6 @@ namespace DUNE
     class EntityParameters: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Entity Name.
       std::string name;
       //! Parameters.
@@ -23527,27 +22411,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -23572,13 +22435,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 0;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return IMC::getSerializationSize(name)*checkOptBit(0) + params.getSerializationSize()*checkOptBit(1);
+        return IMC::getSerializationSize(name) + params.getSerializationSize();
       }
 
       void
@@ -23605,8 +22468,6 @@ namespace DUNE
     class QueryEntityParameters: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Entity Name.
       std::string name;
       //! Visibility.
@@ -23637,27 +22498,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -23682,13 +22522,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 0;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return IMC::getSerializationSize(name)*checkOptBit(0) + IMC::getSerializationSize(visibility)*checkOptBit(1) + IMC::getSerializationSize(scope)*checkOptBit(2);
+        return IMC::getSerializationSize(name) + IMC::getSerializationSize(visibility) + IMC::getSerializationSize(scope);
       }
 
       void
@@ -23699,8 +22539,6 @@ namespace DUNE
     class SetEntityParameters: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Entity Name.
       std::string name;
       //! Parameters.
@@ -23729,27 +22567,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -23774,13 +22591,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 0;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return IMC::getSerializationSize(name)*checkOptBit(0) + params.getSerializationSize()*checkOptBit(1);
+        return IMC::getSerializationSize(name) + params.getSerializationSize();
       }
 
       void
@@ -23807,8 +22624,6 @@ namespace DUNE
     class SaveEntityParameters: public Message
     {
     public:
-      //! Optional Identifier.
-      uint8_t opt_id;
       //! Entity Name.
       std::string name;
 
@@ -23835,27 +22650,6 @@ namespace DUNE
       int
       validate(void) const;
 
-      bool
-      checkOptBit(uint32_t bitPosition) const
-      {
-        return opt_id & (1 << bitPosition);
-      }
-
-      void
-      setOptBit(uint32_t bitPosition)
-      {
-        opt_id |= (1 << bitPosition);
-      }
-
-      void
-      updateOptVar(void);
-
-      uint8_t*
-      serializeFieldsOptional(uint8_t* bfr__);
-
-      uint16_t
-      deserializeFieldsOptional(const uint8_t* bfr__, uint16_t size__);
-
       uint8_t*
       serializeFields(uint8_t* bfr__) const;
 
@@ -23880,13 +22674,13 @@ namespace DUNE
       unsigned
       getFixedSerializationSize(void) const
       {
-        return 1;
+        return 0;
       }
 
       unsigned
       getVariableSerializationSize(void) const
       {
-        return IMC::getSerializationSize(name)*checkOptBit(0);
+        return IMC::getSerializationSize(name);
       }
 
       void

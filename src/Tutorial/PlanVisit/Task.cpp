@@ -75,6 +75,8 @@ namespace Tutorial
       IMC::PlanSpecification p_spec;
       // Flag to check if plan has been sent 
       bool plan_sent = false; 
+      // Plan control type message
+      IMC::PlanControl plan_control;
 
       //! Constructor.
       //! @param[in] name task name.
@@ -127,7 +129,6 @@ namespace Tutorial
         }
 
       }
-
       // Validate coordinates based on if the number of points is even or not.
       bool validateCoor(std::vector<double>& points)
       {
@@ -168,8 +169,8 @@ namespace Tutorial
 
           if(op_mode == IMC::VehicleState::VS_MANEUVER)
           {
-            IMC::Abort msg;
-            dispatch(msg);
+            plan_control.op = IMC::PlanControl::PC_STOP;
+            dispatch(plan_control);
           }
         }
       }
@@ -360,7 +361,6 @@ namespace Tutorial
               auto m_gen = Math::Random::Factory::create(Math::Random::Factory::c_default);
 
               inf("Plan control is being set");
-              IMC::PlanControl plan_control;
               plan_control.type = IMC::PlanControl::PC_REQUEST;
               plan_control.op = IMC::PlanControl::PC_START;
               plan_control.request_id = m_gen->random() & 0xFFFF;

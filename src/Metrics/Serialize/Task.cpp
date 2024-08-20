@@ -188,6 +188,30 @@ namespace Metrics
 
       }
 
+      void OptionalSerialize(IMC::Message* msg, Utils::ByteBuffer& bfr, std::string name)
+      {
+
+        // Optional Serialization
+        IMC::Packet::serializeOptional(msg, bfr);
+        IMC::Message* msg_d = IMC::Packet::deserializeOptional(bfr.getBuffer(), bfr.getSize());
+        msg_d->updateOptVar();
+
+        // Increment accumulated size
+        m_msize += msg_d->getSerializationSize();
+        //inf("Message name is: %s and size is: %d", msg_d->getName(), m_msize);
+            
+        // If the name doesn't exist add it sx
+        if (m_map.count(name) == 0) 
+        { 
+          m_map.insert({name, msg_d->getSerializationSize()});
+        }
+        else // Otherwise just increase the value associated with it
+        {
+          m_map[name] = m_map[name] + msg_d->getSerializationSize(); 
+        }
+
+      }
+
       bool
       poll(double timeout)
       {
@@ -232,6 +256,8 @@ namespace Metrics
               //! If so then get the accumulated size we also save it 
               if(isStringInVector(m_args.messages, name))
               {
+
+                /*
                 if(name == "PlanDB")
                 {
                   // Optional Serialization
@@ -248,6 +274,11 @@ namespace Metrics
                   m_msize += msg_d->getSerializationSize();
 
                 }
+                */
+
+                OptionalSerialize(msg_d, bfr, name);
+                inf("Message type: %s Og Size is: %d", name.c_str(), n);
+                inf("NEW SIZE IS: %d", msg_d->getSerializationSize());
 
                 //OriginalSerialize(msg_d, name);
 
@@ -260,7 +291,6 @@ namespace Metrics
             }
             catch(const std::runtime_error& e)
             {
-
               spew("Error ocurred when deserializing: %s",e.what());
             }
         }

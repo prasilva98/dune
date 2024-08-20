@@ -177,8 +177,8 @@ class Message:
                     if field.get('type') == 'rawdata' or field.get('type') == 'plaintext':
                         f.add_body('if (!{}.empty()) setOptBit({});'.format(get_name(field), index))
                     elif field.get('preset'):
-                        f.add_body('if ({} != {}) setOptBit({});'.format(get_name(field),
-                                                                field.get('preset').strip(), index))
+                        f.add_body('if ({} != {} && {} != 0) setOptBit({});'.format(get_name(field),
+                                                                field.get('preset').strip(), get_name(field), index))
                     elif field.get('type') == 'message':
                         f.add_body('if (!{}.isNull())'.format(get_name(field)))
                         f.add_body("{")

@@ -66,12 +66,6 @@ namespace Tutorial
         //bind<IMC::GpsFix>(this); 
       }
 
-      void
-      consume(const IMC::PlanControl* msg)
-      {
-        
-      }
-
       void 
       consume(const IMC::PlanControlState* msg)
       {
@@ -82,12 +76,7 @@ namespace Tutorial
                                            a_bytesPlanControlState, bytesPlanControlState,
                                             msg->state, msg->plan_id.c_str(), msg->man_id.c_str());
       }
-
-      void 
-      consume(const IMC::GpsFix* msg)
-      {
-      }
-
+      
       //! Update internal state with new parameter values.
       void
       onUpdateParameters(void)
@@ -181,53 +170,54 @@ namespace Tutorial
 
        */
 
-    IMC::PlanDB msg;
-    msg.setTimeStamp(0.8722702745793229);
-    msg.setSource(23415U);
-    msg.setSourceEntity(223U);
-    msg.setDestination(44630U);
-    msg.setDestinationEntity(60U);
-    msg.type = 52U;
-    msg.op = 205U;
-    msg.request_id = 15818U;
-    inf("size of msg_d before push back: %d", msg.getSerializationSize());
-    msg.plan_id.assign("pimba");
-    IMC::SetPWM tmp_msg_0;
-    tmp_msg_0.id = 88U;
-    tmp_msg_0.period = 319180053U;
-    tmp_msg_0.duty_cycle = 30;
-    tmp_msg_0.updateOptVar();
-    msg.arg.set(tmp_msg_0);
-    msg.info.assign("pumba");
-    msg.updateOptVar();
-    inf("size of msg_d before push back: %d", msg.getSerializationSize());
+      IMC::PlanDB msg;
+      msg.setTimeStamp(0.8722702745793229);
+      msg.setSource(23415U);
+      msg.setSourceEntity(223U);
+      msg.setDestination(44630U);
+      msg.setDestinationEntity(60U);
+      msg.type = 52U;
+      msg.op = 205U;
+      msg.request_id = 15818U;
+      msg.plan_id.assign("pimba");
+      IMC::PlanDBInformation tmp_msg_0;
+      tmp_msg_0.change_sname = "pimba";
+      msg.arg.set(tmp_msg_0);
+      msg.info.assign("pumba");
 
-       try
-        {
-          Utils::ByteBuffer bfr;
-          IMC::Packet::serialize(&msg, bfr);
-          inf("Serialized");
-          IMC::Message* msg_d = IMC::Packet::deserialize(bfr.getBuffer(), bfr.getSize());
-          auto msg_c = static_cast<IMC::PlanDB*>(msg_d); 
-          auto msg_pwm = static_cast<IMC::SetPWM*>(msg_c->arg.get());
-          inf("Message PWM: %d %d %d", msg_pwm->id, msg_pwm->duty_cycle, msg_pwm->period);
-          inf("Print message contents: %s %d", msg_c->plan_id.c_str(), msg_c->request_id);
-          test.boolean("PlanDB", msg == *msg_d);
-          delete msg_d;
-        }
-        catch (IMC::InvalidMessageSize& e)
-        {
-          (void)e;
-          test.boolean("msg #0", msg.getSerializationSize() > DUNE_IMC_CONST_MAX_SIZE);
-        }
-          
-        while (!stopping())
-        {
-          waitForMessages(1.0);
+      IMC::Distance msg_dist;
+      msg_dist.value = 30; 
+      IMC::DeviceState n_dev;
+      n_dev.x = 20; 
+      IMC::DeviceState n_dev2;
+      n_dev2.y = 10; 
+      msg_dist.location.push_back(n_dev); 
+      msg_dist.location.push_back(n_dev2);
 
-        }   
-      }
-    };
+        try
+          {
+            Utils::ByteBuffer bfr;
+            IMC::Packet::serializeOptional(&msg_dist, bfr);
+            inf("Size of message: %d", msg_dist.getSerializationSize());
+            IMC::Message* msg_d = IMC::Packet::deserializeOptional(bfr.getBuffer(), bfr.getSize());
+            test.boolean("PlanDB", msg_dist == *msg_d);
+            delete msg_d;
+          }
+          catch (IMC::InvalidMessageSize& e)
+          {
+            (void)e;
+            test.boolean("msg #0", msg.getSerializationSize() > DUNE_IMC_CONST_MAX_SIZE);
+            stop();
+            requestDeactivation();
+          }
+            
+          while (!stopping())
+          {
+            waitForMessages(1.0);
+
+          }   
+        }
+      };
   }
 }
 DUNE_TASK
