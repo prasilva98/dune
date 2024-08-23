@@ -29,19 +29,20 @@ parser.add_argument('-t','--min_time', type=int, default=2,
 # Path to the mission argument
 parser.add_argument('-p', '--mission_path', type=str, default=os.getcwd(),
                      help="Specify path to the actual logs. Preset is your current location")
-# Plan ID
-parser.add_argument('-id', '--mission_planid', type=str,
-                      help="Type the plan_id of the mission (-id soi_plan). If its empty all plans will be used")
 # Start Time
 parser.add_argument('-s', '--start_time', type=str,
                       help="Logs should be after this daytime. Specify in HHMMSS format (ex: 130599). If empty logs the whole days are used.")
+# List of Plan IDs
+parser.add_argument('-id', '--list_ids', nargs='+',
+                      help="List of plan_ids to use Example (--list_ids cmd plan_id). If empty use all of them")
+
 
 # Parse the argument and save it
 args = parser.parse_args()
 min_time= args.min_time
 logs_path = args.mission_path
-plan_id = args.mission_planid
 start_time = args.start_time
+id_list = args.list_ids
 
 if start_time:
   if len(start_time) != 6:
@@ -54,7 +55,7 @@ logs = []
 # Iterate through all the logs in the log path and save the ones relevant
 for log in os.listdir(logs_path):
   # All logs should start with a time HHMMSS format 
-  if str(log)[0].isdigit():
+  if str(log)[0].isdigit() and os.path.isdir(os.path.join(logs_path,log)):
     logs.append(log)
   else: 
     print("File or folder {} NOT a log".format(log))
@@ -64,12 +65,10 @@ logs.sort()
 logs_sorted = []
 
 # With the sorted logs we can now check the duration of each by subtracting the current and the next one
+print("\n ### START OF DURATION PARSER ###")
 if min_time != 0: 
-  print("\n ### START OF DURATION PARSER ### \n")
-  for index, log in enumerate(logs[:]):
-
-    if not (index + 1 == len(logs[:])):
-      # Get the start and end time from the names of the folders
+  for index, log in enumerate(logs):
+    if not (index + 1 == len(logs)):
       end = parse_seconds_from_stamp(logs[index + 1].split('_')[0])
       start = parse_seconds_from_stamp(log.split('_')[0])
       dur = end - start
@@ -81,13 +80,15 @@ if min_time != 0:
         print("Log {} DELETED. DURATION: {:.2f} min below THRESHOLD".format(log, dur/60))
 
   logs_sorted.sort()
-  logs = logs_sorted
+  logs = list(logs_sorted)
+  logs_sorted.clear()
+
 else: 
   print("No Duration stated. Default of 3 min will be used")
 
 # If a mission is before the minimum daytime, remove it
+print(" \n ### START OF DAYTIME PARSER ###")
 if start_time:
-  print(" \n ### START OF DAYTIME PARSER ### \n ")
   # Get the full seconds
   start_time_sec = parse_seconds_from_stamp(start_time)
 
@@ -99,20 +100,22 @@ if start_time:
   logs.sort()
 
 else:
-  print("\n No minimum daytime specified")
-
-# if a mission id is specified, only use the name of it 
-if plan_id:
-  print(" \n ### START OF PLAN ID PARSER ### \n ")
-  for log_name in logs[:]: 
-    if not plan_id in str(log_name):
-      logs.remove(log_name)
-      print('{} log NOT included. REASON: Not part of {} plan'.format(log_name, plan_id))
-else: 
-  print("No plan id specified. All plan names are valid")
+  print("No minimum daytime specified")
   
-logs.sort()
-print(logs)
+print(" \n ### START OF PLAN ID PARSER ###")
+if id_list:
+  for id in id_list:
+    for log in logs:
+      print(id, log)
+      if str(id) in str(log):
+        logs_sorted.append(log)
+  
+  logs = list(logs_sorted)
+  logs.sort()
+  logs_sorted.clear()
+
+else:
+  print("No list of plans specified All plans will be sued")
 
 # Possible sort the logs from a certain time
 date = os.path.basename(logs_path)
