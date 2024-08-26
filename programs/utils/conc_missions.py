@@ -31,10 +31,10 @@ parser.add_argument('-p', '--mission_path', type=str, default=os.getcwd(),
                      help="Specify path to the actual logs. Preset is your current location")
 # Start Time
 parser.add_argument('-s', '--start_time', type=str,
-                      help="Logs should be after this daytime. Specify in HHMMSS format (ex: 130599). If empty logs the whole days are used.")
+                      help="Logs should be after this daytime. Specify in HHMMSS format (ex: -s 130599). If empty logs the whole days are used.")
 # List of Plan IDs
 parser.add_argument('-id', '--list_ids', nargs='+',
-                      help="List of plan_ids to use Example (--list_ids cmd plan_id). If empty use all of them")
+                      help="List of plan_ids to use Example (-id cmd plan_id). If empty use all of them")
 
 
 # Parse the argument and save it
